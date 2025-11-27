@@ -76,6 +76,7 @@
             android:textSize="14sp" />
 
         <Button
+            android:alpha="0.5"
             android:layout_weight="1"
             android:id="@+id/confirmButton"
             android:layout_width="0dp"

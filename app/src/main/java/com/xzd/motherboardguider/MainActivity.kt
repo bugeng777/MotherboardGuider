@@ -523,6 +523,11 @@ class MainActivity : ComponentActivity() {
                     editText.setSelection(validText.length)
                     return
                 }
+                if(text.length>0){
+                    confirmButton.alpha=1f
+                }else{
+                    confirmButton.alpha=0.5f
+                }
                 charCountText.text = "${text.length}/10"
             }
             
