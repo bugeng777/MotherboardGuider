@@ -1,11 +1,17 @@
 package com.xzd.motherboardguider
 
+import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.VISIBLE
+import android.view.Window
+import android.widget.Button
+import android.widget.EditText
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -14,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
 import androidx.transition.Visibility
+import java.util.regex.Pattern
 import com.github.gzuliyujiang.wheelpicker.AddressPicker
 import com.github.gzuliyujiang.wheelpicker.OptionPicker
 import com.github.gzuliyujiang.wheelpicker.annotation.AddressMode
@@ -73,6 +80,11 @@ class MainActivity : ComponentActivity() {
         expectSupportMotherboardList=findViewById(R.id.expectSupportMotherboardList)
 
         startCalText=findViewById(R.id.startCalText)
+        
+        val saveConfigButton = findViewById<RelativeLayout>(R.id.saveConfigButton)
+        saveConfigButton.setOnClickListener {
+            showConfigNameDialog()
+        }
     }
     private fun resetExpectText(){
         setTextStatus(expectPower,"待测算",1) //重制下面预计功耗和主板系列
@@ -476,5 +488,65 @@ class MainActivity : ComponentActivity() {
             })
         }
 
+    }
+    
+    private fun showConfigNameDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_config_name)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        
+        // 设置对话框宽度
+        val window = dialog.window
+        window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        
+        val editText = dialog.findViewById<EditText>(R.id.configNameEditText)
+        val charCountText = dialog.findViewById<TextView>(R.id.charCountText)
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val confirmButton = dialog.findViewById<Button>(R.id.confirmButton)
+        
+        // 字符计数监听
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val text = s?.toString() ?: ""
+                // 验证输入：仅支持汉字/字母/数字
+                val pattern = Pattern.compile("^[\\u4e00-\\u9fa5a-zA-Z0-9]*$")
+                if (!pattern.matcher(text).matches()) {
+                    // 如果包含非法字符，移除最后一个字符
+                    val validText = text.dropLast(1)
+                    editText.setText(validText)
+                    editText.setSelection(validText.length)
+                    return
+                }
+                charCountText.text = "${text.length}/10"
+            }
+            
+            override fun afterTextChanged(s: Editable?) {}
+        })
+        
+        // 取消按钮
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        // 确定按钮
+        confirmButton.setOnClickListener {
+            val configName = editText.text.toString().trim()
+            if (configName.isEmpty()) {
+                Toast.makeText(this, "请输入配置名称", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            // TODO: 保存配置逻辑
+            Log.i("保存配置", "配置名称: $configName")
+            Toast.makeText(this, "配置已保存: $configName", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        
+        dialog.show()
     }
 }

@@ -30,6 +30,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/saveConfigButton"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"

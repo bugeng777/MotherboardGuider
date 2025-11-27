@@ -12,4 +12,5 @@
     <color name="pop_indicator_line">#3B3B3B</color>
     <color name="pop_divider">#3B3B3B</color>
     <color name="pop_background">#252A30</color>
+    <color name="confirm_pop_background">#161C21</color>
 </resources>
