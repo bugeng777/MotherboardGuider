@@ -1,0 +1,160 @@
+[
+  {
+    "id": "2",
+    "code": "2",
+    "name": "英特尔",
+    "series": [
+      {
+        "id": "1",
+        "code": "1",
+        "name": "14代酷睿",
+        "supportedMotherboards": ["Z790","H770","B760","Z690","B660","H610","B760","Z690","B660","H610"],
+        "model": [
+          { "id": "1", "code": "1", "name": "Intel酷睿i9-14900K", "powerConsumption": "332.1", "releaseYear": "2023", "recommendedMotherboards": ["Z790","Z690"] },
+          { "id": "2", "code": "2", "name": "Intel酷睿i7-14700K", "powerConsumption": "282.8", "releaseYear": "2023", "recommendedMotherboards": ["Z790","B760"] },
+          { "id": "3", "code": "3", "name": "Intel酷睿i5-14600K", "powerConsumption": "190", "releaseYear": "2023", "recommendedMotherboards": ["B760","Z790"] }
+        ]
+      },
+      {
+        "id": "2",
+        "code": "2",
+        "name": "13代酷睿",
+        "supportedMotherboards": ["Z790","H770","B760","Z690","B660","H610"],
+        "model": [
+          { "id": "4", "code": "4", "name": "Intel酷睿i9-13900KS", "powerConsumption": "323", "releaseYear": "2022", "recommendedMotherboards": ["Z790","Z690"] },
+          { "id": "5", "code": "5", "name": "Intel酷睿i9-13900K", "powerConsumption": "292.7", "releaseYear": "2022", "recommendedMotherboards": ["Z790","Z690"] },
+          { "id": "6", "code": "6", "name": "Intel酷睿i7-13700", "powerConsumption": "238.3", "releaseYear": "2023", "recommendedMotherboards": ["B760","Z790"] },
+          { "id": "7", "code": "7", "name": "Intel酷睿i7-13790F", "powerConsumption": "234.5", "releaseYear": "2023", "recommendedMotherboards": ["B760","Z790"] },
+          { "id": "8", "code": "8", "name": "Intel酷睿i7-13700KF", "powerConsumption": "212.4", "releaseYear": "2022", "recommendedMotherboards": ["Z790","B760"] },
+          { "id": "9", "code": "9", "name": "Intel酷睿i5-13600K", "powerConsumption": "144.2", "releaseYear": "2022", "recommendedMotherboards": ["B760","Z690"] },
+          { "id": "10", "code": "10", "name": "Intel酷睿i5-13490F", "powerConsumption": "113.8", "releaseYear": "2023", "recommendedMotherboards": ["B760","B660"] },
+          { "id": "11", "code": "11", "name": "Intel酷睿i3-13400", "powerConsumption": "91", "releaseYear": "2023", "recommendedMotherboards": ["B760","B660"] }
+        ]
+      },
+      {
+        "id": "3",
+        "code": "3",
+        "name": "12代酷睿",
+        "supportedMotherboards": ["Z790","H770","B760","Z690","B660","H610"],
+        "model": [
+          { "id": "12", "code": "12", "name": "Intel酷睿i9-12900K", "powerConsumption": "115", "releaseYear": "2021", "recommendedMotherboards": ["Z690","B660"] },
+          { "id": "13", "code": "13", "name": "Intel酷睿i5-12600K", "powerConsumption": "113", "releaseYear": "2021", "recommendedMotherboards": ["B660","H610"] }
+        ]
+      },
+      {
+        "id": "4",
+        "code": "4",
+        "name": "11代酷睿",
+        "supportedMotherboards": ["Z590","B560","H510","Z490","B460","H410"],
+        "model": [
+          { "id": "14", "code": "14", "name": "Intel酷睿i9-11900K", "powerConsumption": "295.86", "releaseYear": "2021", "recommendedMotherboards": ["Z590","B560"] },
+          { "id": "15", "code": "15", "name": "Intel酷睿i7-11700K", "powerConsumption": "277.1", "releaseYear": "2021", "recommendedMotherboards": ["Z590","B560"] },
+          { "id": "16", "code": "16", "name": "Intel酷睿i5-11600K", "powerConsumption": "209.56", "releaseYear": "2021", "recommendedMotherboards": ["B560","H510"] }
+        ]
+      },
+      {
+        "id": "5",
+        "code": "5",
+        "name": "10代酷睿",
+        "supportedMotherboards": ["Z590","B560","H510","Z490","B460","H410"],
+        "model": [
+          { "id": "17", "code": "17", "name": "Intel酷睿i9-10850K", "powerConsumption": "265.13", "releaseYear": "2020", "recommendedMotherboards": ["Z490","B460"] },
+          { "id": "18", "code": "18", "name": "Intel酷睿i9-10900K", "powerConsumption": "251.6", "releaseYear": "2020", "recommendedMotherboards": ["Z490","B460"] },
+          { "id": "19", "code": "19", "name": "Intel酷睿i7-10700", "powerConsumption": "214.72", "releaseYear": "2020", "recommendedMotherboards": ["B460","H410"] },
+          { "id": "20", "code": "20", "name": "Intel酷睿i7-10700K", "powerConsumption": "204.79", "releaseYear": "2020", "recommendedMotherboards": ["Z490","B460"] },
+          { "id": "21", "code": "21", "name": "Intel酷睿i5-10600K", "powerConsumption": "131.37", "releaseYear": "2020", "recommendedMotherboards": ["B460","H410"] }
+        ]
+      },
+      {
+        "id": "6",
+        "code": "6",
+        "name": "9代酷睿",
+        "supportedMotherboards": ["Z390","B365","H310"],
+        "model": [
+          { "id": "22", "code": "22", "name": "Intel酷睿i9-9900KS", "powerConsumption": "231.4", "releaseYear": "2019", "recommendedMotherboards": ["Z390","B365"] },
+          { "id": "23", "code": "23", "name": "Intel酷睿i9-9900K", "powerConsumption": "178.02", "releaseYear": "2018", "recommendedMotherboards": ["Z390","B365"] },
+          { "id": "24", "code": "24", "name": "Intel酷睿i7-9700K", "powerConsumption": "168.02", "releaseYear": "2018", "recommendedMotherboards": ["Z390","B365"] }
+        ]
+      },
+      {
+        "id": "7",
+        "code": "7",
+        "name": "8代酷睿",
+        "supportedMotherboards": ["Z390","B365","H310"],
+        "model": [
+          { "id": "25", "code": "25", "name": "Intel酷睿i7-8700K", "powerConsumption": "123.6", "releaseYear": "2017", "recommendedMotherboards": ["Z390","B365"] },
+          { "id": "26", "code": "26", "name": "Intel酷睿i5-8600K", "powerConsumption": "108.16", "releaseYear": "2017", "recommendedMotherboards": ["B365","H310"] }
+        ]
+      },
+      {
+        "id": "8",
+        "code": "8",
+        "name": "7代酷睿",
+        "supportedMotherboards": ["Z270","B250","H110"],
+        "model": [
+          { "id": "27", "code": "27", "name": "Intel酷睿i5-7600K", "powerConsumption": "85.18", "releaseYear": "2017", "recommendedMotherboards": ["Z270","B250"] },
+          { "id": "28", "code": "28", "name": "Intel酷睿i3-7350K", "powerConsumption": "50.51", "releaseYear": "2017", "recommendedMotherboards": ["B250","H110"] }
+        ]
+      },
+      {
+        "id": "9",
+        "code": "9",
+        "name": "6代酷睿",
+        "supportedMotherboards": ["Z170","B150","H110"],
+        "model": [
+          { "id": "29", "code": "29", "name": "Intel酷睿i7-6700K", "powerConsumption": "105.32", "releaseYear": "2015", "recommendedMotherboards": ["Z170","B150"] },
+          { "id": "30", "code": "30", "name": "Intel酷睿i7-6700", "powerConsumption": "85", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
+          { "id": "31", "code": "31", "name": "Intel酷睿i5-6600K", "powerConsumption": "83.34", "releaseYear": "2015", "recommendedMotherboards": ["Z170","B150"] },
+          { "id": "32", "code": "32", "name": "Intel酷睿i5-6600", "powerConsumption": "75.76", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
+          { "id": "33", "code": "33", "name": "Intel酷睿i5-6500", "powerConsumption": "64.39", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
+          { "id": "34", "code": "34", "name": "Intel酷睿i3-6300", "powerConsumption": "51.43", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
+          { "id": "35", "code": "35", "name": "Intel酷睿i3-6100", "powerConsumption": "46.18", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] }
+        ]
+      },
+      {
+        "id": "10",
+        "code": "10",
+        "name": "4代酷睿",
+        "supportedMotherboards": ["Z97","H97","B85"],
+        "model": [
+          { "id": "36", "code": "36", "name": "Intel酷睿i7-4790K", "powerConsumption": "129.88", "releaseYear": "2014", "recommendedMotherboards": ["Z97","H97"] },
+          { "id": "37", "code": "37", "name": "Intel酷睿i5-4690", "powerConsumption": "95.8", "releaseYear": "2014", "recommendedMotherboards": ["H97","B85"] },
+          { "id": "38", "code": "38", "name": "Intel酷睿i5-4690K", "powerConsumption": "94", "releaseYear": "2014", "recommendedMotherboards": ["Z97","B85"] },
+          { "id": "39", "code": "39", "name": "Intel酷睿i3-4360", "powerConsumption": "59.36", "releaseYear": "2014", "recommendedMotherboards": ["B85","H97"] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "code": "2",
+    "name": "超威半导体",
+    "series": [
+      {
+        "id": "1",
+        "code": "1",
+        "name": "9000系列",
+        "supportedMotherboards": ["X870E","X870","X670E","X670","B850","B650E","B650"],
+        "model": [
+          { "id": "1", "code": "1", "name": "AMD锐龙9 9950X3D", "powerConsumption": "245.3", "releaseYear": "2025", "recommendedMotherboards": ["X870E","X870","B850"] },
+          { "id": "2", "code": "2", "name": "AMD锐龙9 9900X", "powerConsumption": "193.1", "releaseYear": "2024", "recommendedMotherboards": ["X870E","B850","B650E"] },
+          { "id": "3", "code": "3", "name": "AMD锐龙9 9950X", "powerConsumption": "182.6", "releaseYear": "2024", "recommendedMotherboards": ["X870E","B850","B650E"] },
+          { "id": "4", "code": "4", "name": "AMD锐龙7 9700X", "powerConsumption": "144.1", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] },
+          { "id": "5", "code": "5", "name": "AMD锐龙7 9800X3D", "powerConsumption": "135.8", "releaseYear": "2024", "recommendedMotherboards": ["X870E","B850","B650E"] },
+          { "id": "6", "code": "6", "name": "AMD锐龙5 9600X", "powerConsumption": "124.7", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] }
+        ]
+      },
+      {
+        "id": "2",
+        "code": "2",
+        "name": "8000系列",
+        "supportedMotherboards": ["X870E","X870","X670E","X670","B850","B650E","B650"],
+        "model": [
+          { "id": "7", "code": "7", "name": "AMD锐龙7 8700F", "powerConsumption": "88", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] },
+          { "id": "8", "code": "8", "name": "AMD锐龙7 8700G", "powerConsumption": "87.8", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] },
+          { "id": "9", "code": "9", "name": "AMD锐龙5 8600G", "powerConsumption": "69.3", "releaseYear": "2024", "recommendedMotherboards": ["B650E","B650"] }
+        ]
+      }
+    ]
+  }
+]

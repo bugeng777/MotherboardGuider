@@ -1,0 +1,842 @@
+[
+  {
+    "id": "1",
+    "code": "1",
+    "name": "英伟达",
+    "series": [
+      {
+        "id": "1",
+        "code": "1",
+        "name": "GeForce RTX 50系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RTX 5090D",
+            "releaseYear": 2025,
+            "powerConsumption": "575"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RTX 5080",
+            "releaseYear": 2025,
+            "powerConsumption": "360"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RTX 5070 Ti",
+            "releaseYear": 2025,
+            "powerConsumption": "300"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RTX 5070",
+            "releaseYear": 2025,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RTX 5060 Ti",
+            "releaseYear": 2025,
+            "powerConsumption": "180"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RTX 5060",
+            "releaseYear": 2025,
+            "powerConsumption": "145"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "code": "2",
+        "name": "GeForce RTX 40系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RTX 4090",
+            "releaseYear": 2022,
+            "powerConsumption": "450"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RTX 4090 D",
+            "releaseYear": 2023,
+            "powerConsumption": "425"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RTX 4080 16GB",
+            "releaseYear": 2022,
+            "powerConsumption": "320"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RTX 4080 SUPER",
+            "releaseYear": 2024,
+            "powerConsumption": "320"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RTX 4080 12GB",
+            "releaseYear": 2022,
+            "powerConsumption": "285"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RTX 4070 Ti",
+            "releaseYear": 2023,
+            "powerConsumption": "285"
+          },
+          {
+            "id": "7",
+            "code": "7",
+            "name": "RTX 4070 Ti SUPER",
+            "releaseYear": 2024,
+            "powerConsumption": "285"
+          },
+          {
+            "id": "8",
+            "code": "8",
+            "name": "RTX 4070 SUPER",
+            "releaseYear": 2024,
+            "powerConsumption": "220"
+          },
+          {
+            "id": "9",
+            "code": "9",
+            "name": "RTX 4070",
+            "releaseYear": 2023,
+            "powerConsumption": "200"
+          },
+          {
+            "id": "10",
+            "code": "10",
+            "name": "RTX 4060 Ti 8GB",
+            "releaseYear": 2023,
+            "powerConsumption": "160"
+          },
+          {
+            "id": "11",
+            "code": "11",
+            "name": "RTX 4060 Ti 16GB",
+            "releaseYear": 2023,
+            "powerConsumption": "160"
+          },
+          {
+            "id": "12",
+            "code": "12",
+            "name": "RTX 4060",
+            "releaseYear": 2023,
+            "powerConsumption": "115"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "code": "3",
+        "name": "GeForce RTX 30系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RTX 3090 Ti",
+            "releaseYear": 2022,
+            "powerConsumption": "450"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RTX 3090",
+            "releaseYear": 2020,
+            "powerConsumption": "350"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RTX 3080 Ti",
+            "releaseYear": 2021,
+            "powerConsumption": "350"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RTX 3080",
+            "releaseYear": 2020,
+            "powerConsumption": "320"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RTX 3070 Ti",
+            "releaseYear": 2021,
+            "powerConsumption": "290"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RTX 3070",
+            "releaseYear": 2020,
+            "powerConsumption": "220"
+          },
+          {
+            "id": "7",
+            "code": "7",
+            "name": "RTX 3060 Ti",
+            "releaseYear": 2020,
+            "powerConsumption": "200"
+          },
+          {
+            "id": "8",
+            "code": "8",
+            "name": "RTX 3060",
+            "releaseYear": 2021,
+            "powerConsumption": "170"
+          },
+          {
+            "id": "9",
+            "code": "9",
+            "name": "RTX 3050",
+            "releaseYear": 2022,
+            "powerConsumption": "130"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "code": "4",
+        "name": "GeForce RTX 20系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RTX 2080 Ti",
+            "releaseYear": 2018,
+            "powerConsumption": "260"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RTX 2080 SUPER",
+            "releaseYear": 2019,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RTX 2080",
+            "releaseYear": 2018,
+            "powerConsumption": "225"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RTX 2070 SUPER",
+            "releaseYear": 2019,
+            "powerConsumption": "215"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RTX 2070",
+            "releaseYear": 2018,
+            "powerConsumption": "175"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RTX 2060 SUPER",
+            "releaseYear": 2019,
+            "powerConsumption": "175"
+          },
+          {
+            "id": "7",
+            "code": "7",
+            "name": "RTX 2060 12GB",
+            "releaseYear": 2021,
+            "powerConsumption": "185"
+          },
+          {
+            "id": "8",
+            "code": "8",
+            "name": "RTX 2060",
+            "releaseYear": 2019,
+            "powerConsumption": "160"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "code": "5",
+        "name": "GeForce GTX系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "GTX 1080 Ti",
+            "releaseYear": 2017,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "GTX 1080",
+            "releaseYear": 2016,
+            "powerConsumption": "180"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "GTX 1070 Ti",
+            "releaseYear": 2017,
+            "powerConsumption": "180"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "GTX 1070",
+            "releaseYear": 2016,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "GTX 1060",
+            "releaseYear": 2018,
+            "powerConsumption": "120"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "GTX 1660 Ti",
+            "releaseYear": 2019,
+            "powerConsumption": "120"
+          },
+          {
+            "id": "7",
+            "code": "7",
+            "name": "GTX 1660 SUPER",
+            "releaseYear": 2019,
+            "powerConsumption": "120"
+          },
+          {
+            "id": "8",
+            "code": "8",
+            "name": "GTX 1660",
+            "releaseYear": 2019,
+            "powerConsumption": "120"
+          },
+          {
+            "id": "9",
+            "code": "9",
+            "name": "GTX 1650 Super",
+            "releaseYear": 2019,
+            "powerConsumption": "100"
+          },
+          {
+            "id": "10",
+            "code": "10",
+            "name": "GTX 1650 GDDR6",
+            "releaseYear": 2020,
+            "powerConsumption": "75"
+          },
+          {
+            "id": "11",
+            "code": "11",
+            "name": "GTX 1650",
+            "releaseYear": 2019,
+            "powerConsumption": "75"
+          },
+          {
+            "id": "12",
+            "code": "12",
+            "name": "GTX 1050 Ti",
+            "releaseYear": 2016,
+            "powerConsumption": "75"
+          },
+          {
+            "id": "13",
+            "code": "13",
+            "name": "GTX 1050",
+            "releaseYear": 2016,
+            "powerConsumption": "75"
+          },
+          {
+            "id": "14",
+            "code": "14",
+            "name": "GTX 1630",
+            "releaseYear": 2022,
+            "powerConsumption": "75"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "code": "6",
+        "name": "TITAN系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "TITAN RTX",
+            "releaseYear": 2018,
+            "powerConsumption": "280"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "TITAN V",
+            "releaseYear": 2018,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "TITAN Xp",
+            "releaseYear": 2017,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "GeForce GTX TITAN X",
+            "releaseYear": 2015,
+            "powerConsumption": "250"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "code": "7",
+        "name": "GeForce GT系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "GT 1030",
+            "releaseYear": 2017,
+            "powerConsumption": "30"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "code": "2",
+    "name": "超威半导体",
+    "series": [
+      {
+        "id": "1",
+        "code": "1",
+        "name": "Radeon RX 9000系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RX 9070 XT",
+            "releaseYear": 2025,
+            "powerConsumption": "304"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RX 9070",
+            "releaseYear": 2025,
+            "powerConsumption": "220"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RX 9070 GRE",
+            "releaseYear": 2025,
+            "powerConsumption": "220"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RX 9060 XT",
+            "releaseYear": 2025,
+            "powerConsumption": "180"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RX 7650 GRE",
+            "releaseYear": 2025,
+            "powerConsumption": "205"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "code": "2",
+        "name": "Radeon RX 7000系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RX 7900 XTX",
+            "releaseYear": 2022,
+            "powerConsumption": "355"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RX 7900 XT",
+            "releaseYear": 2022,
+            "powerConsumption": "315"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RX 7800 XT",
+            "releaseYear": 2023,
+            "powerConsumption": "263"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RX 7900 GRE",
+            "releaseYear": 2023,
+            "powerConsumption": "260"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RX 7700 XT",
+            "releaseYear": 2023,
+            "powerConsumption": "245"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RX 7600",
+            "releaseYear": 2023,
+            "powerConsumption": "165"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "code": "3",
+        "name": "Radeon RX 6000系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RX 6950 XT",
+            "releaseYear": 2022,
+            "powerConsumption": "335"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RX 6900 XT水冷版",
+            "releaseYear": 2021,
+            "powerConsumption": "330"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RX 6900 XT",
+            "releaseYear": 2020,
+            "powerConsumption": "300"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RX 6800 XT",
+            "releaseYear": 2020,
+            "powerConsumption": "300"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RX 6800",
+            "releaseYear": 2020,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RX 6750 XT",
+            "releaseYear": 2022,
+            "powerConsumption": "250"
+          },
+          {
+            "id": "7",
+            "code": "7",
+            "name": "RX 6700 XT",
+            "releaseYear": 2021,
+            "powerConsumption": "230"
+          },
+          {
+            "id": "8",
+            "code": "8",
+            "name": "RX 6700",
+            "releaseYear": 2022,
+            "powerConsumption": "175"
+          },
+          {
+            "id": "9",
+            "code": "9",
+            "name": "RX 6650 XT",
+            "releaseYear": 2022,
+            "powerConsumption": "180"
+          },
+          {
+            "id": "10",
+            "code": "10",
+            "name": "RX 6600 XT",
+            "releaseYear": 2021,
+            "powerConsumption": "160"
+          },
+          {
+            "id": "11",
+            "code": "11",
+            "name": "RX 6750 GRE 12GB",
+            "releaseYear": 2023,
+            "powerConsumption": "185"
+          },
+          {
+            "id": "12",
+            "code": "12",
+            "name": "RX 6750 GRE 10GB",
+            "releaseYear": 2023,
+            "powerConsumption": "158"
+          },
+          {
+            "id": "13",
+            "code": "13",
+            "name": "RX 6600",
+            "releaseYear": 2021,
+            "powerConsumption": "132"
+          },
+          {
+            "id": "14",
+            "code": "14",
+            "name": "RX 6500 XT",
+            "releaseYear": 2022,
+            "powerConsumption": "107"
+          },
+          {
+            "id": "15",
+            "code": "15",
+            "name": "RX 6400",
+            "releaseYear": 2022,
+            "powerConsumption": "53"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "code": "4",
+        "name": "Radeon RX 5000系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RX 5700 XT",
+            "releaseYear": 2019,
+            "powerConsumption": "225"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RX 590",
+            "releaseYear": 2018,
+            "powerConsumption": "225"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RX 580",
+            "releaseYear": 2017,
+            "powerConsumption": "185"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RX 5700",
+            "releaseYear": 2019,
+            "powerConsumption": "180"
+          },
+          {
+            "id": "5",
+            "code": "5",
+            "name": "RX 5600 XT",
+            "releaseYear": 2020,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "6",
+            "code": "6",
+            "name": "RX 5600",
+            "releaseYear": 2020,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "7",
+            "code": "7",
+            "name": "RX 5500",
+            "releaseYear": 2019,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "8",
+            "code": "8",
+            "name": "RX 580 2048SP",
+            "releaseYear": 2018,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "9",
+            "code": "9",
+            "name": "RX 570",
+            "releaseYear": 2017,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "10",
+            "code": "10",
+            "name": "RX 560 XT",
+            "releaseYear": 2017,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "11",
+            "code": "11",
+            "name": "RX 5500 XT",
+            "releaseYear": 2019,
+            "powerConsumption": "130"
+          },
+          {
+            "id": "12",
+            "code": "12",
+            "name": "RX 5300",
+            "releaseYear": 2020,
+            "powerConsumption": "100"
+          },
+          {
+            "id": "13",
+            "code": "13",
+            "name": "RX 560",
+            "releaseYear": 2017,
+            "powerConsumption": "80"
+          },
+          {
+            "id": "14",
+            "code": "14",
+            "name": "RX 550",
+            "releaseYear": 2017,
+            "powerConsumption": "50"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "code": "5",
+        "name": "Radeon RX 400系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "RX 480",
+            "releaseYear": 2016,
+            "powerConsumption": "150"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "RX 470",
+            "releaseYear": 2016,
+            "powerConsumption": "120"
+          },
+          {
+            "id": "3",
+            "code": "3",
+            "name": "RX 470D",
+            "releaseYear": 2016,
+            "powerConsumption": "110"
+          },
+          {
+            "id": "4",
+            "code": "4",
+            "name": "RX 460",
+            "releaseYear": 2016,
+            "powerConsumption": "70"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "code": "6",
+        "name": "Radeon Vega系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "Vega 64",
+            "releaseYear": 2018,
+            "powerConsumption": "295"
+          },
+          {
+            "id": "2",
+            "code": "2",
+            "name": "Vega 56",
+            "releaseYear": 2018,
+            "powerConsumption": "210"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "code": "7",
+        "name": "Radeon VII系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "Radeon VII",
+            "releaseYear": 2019,
+            "powerConsumption": "300"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "code": "3",
+    "name": "英特尔",
+    "series": [
+      {
+        "id": "1",
+        "code": "1",
+        "name": "Arc系列",
+        "model": [
+          {
+            "id": "1",
+            "code": "1",
+            "name": "Arc A380",
+            "releaseYear": 2022,
+            "powerConsumption": "75"
+          }
+        ]
+      }
+    ]
+  }
+]
