@@ -4,7 +4,7 @@ public class GPUBean {
     private String brandId;
     private String seriesId;
     private String modelId;
-
+    private String gpuName;
     public String getBrandId() {
         return brandId;
     }
@@ -27,5 +27,13 @@ public class GPUBean {
 
     public void setModelId(String modelId) {
         this.modelId = modelId;
+    }
+
+    public String getGpuName() {
+        return gpuName;
+    }
+
+    public void setGpuName(String gpuName) {
+        this.gpuName = gpuName;
     }
 }

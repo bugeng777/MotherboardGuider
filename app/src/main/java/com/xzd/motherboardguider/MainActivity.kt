@@ -8,18 +8,16 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.View.OnClickListener
-import android.view.View.VISIBLE
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
-import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
-import androidx.transition.Visibility
+import androidx.lifecycle.lifecycleScope
 import java.util.regex.Pattern
 import com.github.gzuliyujiang.wheelpicker.AddressPicker
 import com.github.gzuliyujiang.wheelpicker.OptionPicker
@@ -40,21 +38,30 @@ import com.xzd.motherboardguider.bean.GPUBean
 import com.xzd.motherboardguider.bean.GpuModelBean
 import org.json.JSONArray
 
+import kotlinx.coroutines.launch
+import com.xzd.motherboardguider.api.ApiClient
+import com.xzd.motherboardguider.bean.CreateCollectionRequest
+import com.xzd.motherboardguider.bean.LoadCollectionListRequest
+
 class MainActivity : ComponentActivity() {
 
     private var cpuSelectorText: TextView? = null
     private var gpuSelectorText: TextView? = null
     private var diskSelectorText: TextView? = null
-    private var cpuValue:CPUBean?=null
-    private var gpuValue:GPUBean?=null
-    private var diskVale:DiskBean?=null
+    private var cpuValue: CPUBean? = null
+    private var gpuValue: GPUBean? = null
+    private var diskVale: DiskBean? = null
+    private var expectPowerValue: Float? = null
+    private var supportedMotherboardValue: String? = null
+    private var suggestMotherboardValue: String? = null
     private lateinit var startCalButton: RelativeLayout
-    private lateinit var expectPower:TextView
-    private lateinit var expectSuggestMotherboard:TextView
-    private lateinit var expectSupportMotherboard:TextView
+    private lateinit var expectPower: TextView
+    private lateinit var expectSuggestMotherboard: TextView
+    private lateinit var expectSupportMotherboard: TextView
+    private lateinit var saveConfigButton: RelativeLayout
     private lateinit var expectSupportMotherboardList: FlexboxLayout
-    private lateinit var startCalText:TextView
-    private var calCount=0;// 如果是0，就显示开始测算，如果是0以外的数字，就显示重新测算
+    private lateinit var startCalText: TextView
+    private var calCount = 0;// 如果是0，就显示开始测算，如果是0以外的数字，就显示重新测算
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,33 +77,34 @@ class MainActivity : ComponentActivity() {
             showGpuPicker()
         }
         val diskSelectorButton = findViewById<LinearLayout>(R.id.diskSelectorButton)
-        diskSelectorButton.setOnClickListener{
+        diskSelectorButton.setOnClickListener {
             showDiskPicker()
         }
-        startCalButton= findViewById(R.id.startCalButton)
-        expectPower=findViewById(R.id.expectPower)
-        expectSuggestMotherboard=findViewById(R.id.expectSuggestMotherboard)
-        expectSupportMotherboard=findViewById(R.id.expectSupportMotherboard)
-        expectSupportMotherboardList=findViewById(R.id.expectSupportMotherboardList)
+        startCalButton = findViewById(R.id.startCalButton)
+        expectPower = findViewById(R.id.expectPower)
+        expectSuggestMotherboard = findViewById(R.id.expectSuggestMotherboard)
+        expectSupportMotherboard = findViewById(R.id.expectSupportMotherboard)
+        expectSupportMotherboardList = findViewById(R.id.expectSupportMotherboardList)
+        startCalText = findViewById(R.id.startCalText)
+        saveConfigButton = findViewById<RelativeLayout>(R.id.saveConfigButton)
 
-        startCalText=findViewById(R.id.startCalText)
-        
-        val saveConfigButton = findViewById<RelativeLayout>(R.id.saveConfigButton)
-        saveConfigButton.setOnClickListener {
-            showConfigNameDialog()
-        }
     }
-    private fun resetExpectText(){
-        setTextStatus(expectPower,"待测算",1) //重制下面预计功耗和主板系列
-        setTextStatus(expectSupportMotherboard,"待测算",1) //重制下面预计功耗和主板系列
-        setTextStatus(expectSuggestMotherboard,"待测算",1) //重制下面预计功耗和主板系列
+
+    private fun resetExpectText() {
+        setTextStatus(expectPower, "待测算", 1) //重制下面预计功耗和主板系列
+        setTextStatus(expectSupportMotherboard, "待测算", 1) //重制下面预计功耗和主板系列
+        setTextStatus(expectSuggestMotherboard, "待测算", 1) //重制下面预计功耗和主板系列
         expectSupportMotherboardList.removeAllViews() //删掉所有TextView
-        expectSupportMotherboard.visibility=View.VISIBLE
-        expectSupportMotherboardList.visibility=View.GONE
+        expectSupportMotherboard.visibility = View.VISIBLE
+        expectSupportMotherboardList.visibility = View.GONE
+        expectPowerValue = null //临时变量清空
+        supportedMotherboardValue = null //临时变量清空
+        suggestMotherboardValue = null //临时变量清空
     }
+
     private fun showDiskPicker() {
         val data: MutableList<DiskBean?> = ArrayList<DiskBean?>()
-        for(item:Int in  1..99){
+        for (item: Int in 1..99) {
             data.add(DiskBean(item, "$item"))
         }
         val diskPicker = OptionPicker(this)
@@ -104,11 +112,11 @@ class MainActivity : ComponentActivity() {
         diskPicker.setBodyWidth(140)
         diskPicker.setData(data)
         diskPicker.setDefaultPosition(2)
-        diskPicker.setOnOptionPickedListener(object:OnOptionPickedListener{
+        diskPicker.setOnOptionPickedListener(object : OnOptionPickedListener {
             override fun onOptionPicked(position: Int, item: Any?) {
                 resetExpectText() //重置输出结果
                 diskVale = item as DiskBean
-                Log.i("看看硬盘数量","${item.name} 个")
+                Log.i("看看硬盘数量", "${item.name} 个")
                 setTextStatus(diskSelectorText!!, "${item.name} 个", 0)
                 checkStartCalStatus() //检查一下开始计算的按钮状态
             }
@@ -117,7 +125,8 @@ class MainActivity : ComponentActivity() {
         wheelLayout.background = getDrawable(R.drawable.pop_background)
         wheelLayout.setTextColor(getColor(R.color.white))
         wheelLayout.setSelectedTextColor(getColor(R.color.white))
-        val textSize14sp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, resources.displayMetrics)
+        val textSize14sp =
+            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, resources.displayMetrics)
         wheelLayout.setTextSize(textSize14sp)
         wheelLayout.setSelectedTextSize(textSize14sp)
         wheelLayout.setIndicatorColor(getColor(R.color.pop_indicator_line))
@@ -148,6 +157,7 @@ class MainActivity : ComponentActivity() {
         }
         diskPicker.show()
     }
+
     private fun showCpuPicker() {
         val cpuPicker = AddressPicker(this)
         cpuPicker.setAddressMode(
@@ -174,19 +184,26 @@ class MainActivity : ComponentActivity() {
                 resetExpectText() //重置输出结果
                 if (province != null && city != null && county != null) {
                     Log.i("CPU选择", "${province}  ${city} ${county}")
-                    setTextStatus(cpuSelectorText!!, "${province.name} ｜ ${city.name} ｜ ${county.name}", 0)
+                    setTextStatus(
+                        cpuSelectorText!!,
+                        "${province.name} ｜ ${city.name} ｜ ${county.name}",
+                        0
+                    )
                     val cb = CPUBean()
-                    cb.brandId=province.code
-                    cb.seriesId=city.code
-                    cb.modelId=county.code
+                    cb.brandId = province.code
+                    cb.seriesId = city.code
+                    cb.modelId = county.code
                     // 读取主板信息并保存到 CPUBean
-                    val motherboardInfo = getCpuMotherboardInfo(province.code, city.code, county.code)
+                    val motherboardInfo =
+                        getCpuMotherboardInfo(province.code, city.code, county.code)
                     cb.supportedMotherboards = motherboardInfo.first
                     cb.recommendedMotherboards = motherboardInfo.second
-                    cpuValue=cb
+                    cb.cpuName = county.name
+                    cpuValue = cb
                 } else {
-                    cpuValue=null
-                    Toast.makeText(baseContext, "选项内容有错误请重启app", Toast.LENGTH_SHORT).show()
+                    cpuValue = null
+                    Toast.makeText(baseContext, "选项内容有错误请重启app", Toast.LENGTH_SHORT)
+                        .show()
                     setTextStatus(cpuSelectorText!!, "请选择", 1)
                 }
                 checkStartCalStatus() //检查一下开始计算的按钮状态
@@ -199,7 +216,8 @@ class MainActivity : ComponentActivity() {
         wheelLayout.setTextColor(getColor(R.color.white))
         wheelLayout.setSelectedTextColor(getColor(R.color.white))
         wheelLayout.setIndicatorColor(getColor(R.color.pop_indicator_line))
-        val textSize14sp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, resources.displayMetrics)
+        val textSize14sp =
+            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, resources.displayMetrics)
         wheelLayout.setTextSize(textSize14sp)
         wheelLayout.setSelectedTextSize(textSize14sp)
         wheelLayout.setSelectedTextBold(false)
@@ -233,7 +251,8 @@ class MainActivity : ComponentActivity() {
 
         cpuPicker.show()
     }
-    private fun showGpuPicker(){
+
+    private fun showGpuPicker() {
         val gpuPicker = AddressPicker(this)
         gpuPicker.setAddressMode(
             "gpu_data.json", AddressMode.PROVINCE_CITY_COUNTY,
@@ -261,13 +280,15 @@ class MainActivity : ComponentActivity() {
                     Log.i("GPU选择", "${province.name}  ${city.name} ${county.name}")
                     setTextStatus(gpuSelectorText!!, "${city.name} ｜ ${county.name}", 0)
                     val gb = GPUBean()
-                    gb.brandId=province.code
-                    gb.seriesId=city.code
-                    gb.modelId=county.code
-                    gpuValue=gb
+                    gb.brandId = province.code
+                    gb.seriesId = city.code
+                    gb.modelId = county.code
+                    gb.gpuName = county.name
+                    gpuValue = gb
                 } else {
-                    gpuValue=null
-                    Toast.makeText(baseContext, "选项内容有错误请重启app", Toast.LENGTH_SHORT).show()
+                    gpuValue = null
+                    Toast.makeText(baseContext, "选项内容有错误请重启app", Toast.LENGTH_SHORT)
+                        .show()
                     setTextStatus(gpuSelectorText!!, "请选择", 1)
                 }
                 checkStartCalStatus() //检查一下开始计算的按钮状态
@@ -280,7 +301,8 @@ class MainActivity : ComponentActivity() {
         wheelLayout.setTextColor(getColor(R.color.white))
         wheelLayout.setSelectedTextColor(getColor(R.color.white))
         wheelLayout.setIndicatorColor(getColor(R.color.pop_indicator_line))
-        val textSize14sp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, resources.displayMetrics)
+        val textSize14sp =
+            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14f, resources.displayMetrics)
         wheelLayout.setTextSize(textSize14sp)
         wheelLayout.setSelectedTextSize(textSize14sp)
         wheelLayout.setSelectedTextBold(false)
@@ -310,29 +332,42 @@ class MainActivity : ComponentActivity() {
         gpuPicker.setAnimationStyle(R.style.PopupAnimation)
         gpuPicker.show()
     }
-    private fun startCal(){
+
+    private fun startCal() {
         val cpuModel = findCpuModel(cpuValue)
         val gpuModel = findGpuModel(gpuValue)
-        if(cpuModel==null || gpuModel==null){
-            Toast.makeText(this,"无法读取所选配置，请重试",Toast.LENGTH_SHORT).show()
+        if (cpuModel == null || gpuModel == null) {
+            Toast.makeText(this, "无法读取所选配置，请重试", Toast.LENGTH_SHORT).show()
             return
         }
-        Log.i("StartCal","CPU: ${cpuModel.name} ｜ ${cpuModel.powerConsumption}W ｜ ${cpuModel.releaseYear} ｜" +
-                " ${cpuValue?.recommendedMotherboards} |${cpuValue?.supportedMotherboards}")
-        Log.i("StartCal","GPU: ${gpuModel.name} ｜ ${gpuModel.powerConsumption}W ｜ ${gpuModel.releaseYear}")
+        Log.i(
+            "StartCal",
+            "CPU: ${cpuModel.name} ｜ ${cpuModel.powerConsumption}W ｜ ${cpuModel.releaseYear} ｜" +
+                    " ${cpuValue?.recommendedMotherboards} |${cpuValue?.supportedMotherboards}"
+        )
+        Log.i(
+            "StartCal",
+            "GPU: ${gpuModel.name} ｜ ${gpuModel.powerConsumption}W ｜ ${gpuModel.releaseYear}"
+        )
         val diskCount = diskVale?.name?.toIntOrNull() ?: 0
         val cpuPower = cpuModel.powerConsumption?.toFloatOrNull() ?: 0f
         val gpuPower = gpuModel.powerConsumption?.toFloatOrNull() ?: 0f
         val totalPowerConsumption = cpuPower + gpuPower + diskCount * 15f
+        expectPowerValue = totalPowerConsumption //临时变量存储一下总的预计功耗
+        supportedMotherboardValue =
+            cpuValue?.supportedMotherboards?.joinToString(" | ") ?: "无" //临时变量存储支持的主板
+        suggestMotherboardValue =
+            cpuValue?.recommendedMotherboards?.joinToString(" | ") ?: "无" //临时变量存储推荐的主板
         expectPower.text = "${totalPowerConsumption}W"
-        Log.i("StartCal","预计功耗:${totalPowerConsumption}W")
-        val recommendedMotherboardsText = cpuValue?.recommendedMotherboards?.joinToString(" | ") ?: "无"
+        Log.i("StartCal", "预计功耗:${totalPowerConsumption}W")
+        val recommendedMotherboardsText =
+            cpuValue?.recommendedMotherboards?.joinToString(" | ") ?: "无"
         val supportedMotherboardsText = cpuValue?.supportedMotherboards?.joinToString(" | ") ?: "无"
         setTextStatus(expectSuggestMotherboard, recommendedMotherboardsText, 0)
 
-        val height=expectSupportMotherboard.height
-        expectSupportMotherboard.visibility= View.GONE
-        expectSupportMotherboardList.visibility=View.VISIBLE
+        val height = expectSupportMotherboard.height
+        expectSupportMotherboard.visibility = View.GONE
+        expectSupportMotherboardList.visibility = View.VISIBLE
         expectSupportMotherboardList.removeAllViews() // 先要清理原先所有的view
         val supportedMotherboards = cpuValue!!.supportedMotherboards
         for ((index, item) in supportedMotherboards.withIndex()) {
@@ -340,33 +375,41 @@ class MainActivity : ComponentActivity() {
             val isLast = index == supportedMotherboards.size - 1 //最后一个不加 | 分隔符
             tv.text = if (isLast) item else "$item | "
             tv.textSize = 14f
-            tv.height=height
+            tv.height = height
             tv.setTextColor(getColor(R.color.home_name_light))
             expectSupportMotherboardList.addView(tv)
         }
-        setTextStatus(expectPower,totalPowerConsumption.toString(),0)
-        calCount=1;
-        startCalText.text="重新测算"
+        setTextStatus(expectPower, totalPowerConsumption.toString(), 0)
+        calCount = 1;
+        startCalText.text = "重新测算"
+        checkStartCalStatus() // 判断一下保存配置的按钮能不能用了
         // TODO: 后续在这里继续完成测算逻辑
     }
 
-    private fun getCpuMotherboardInfo(brandId: String, seriesId: String, modelId: String): Pair<List<String>, List<String>> {
-        val brands = readJsonArrayFromAssets("cpu_data.json") ?: return Pair(emptyList(), emptyList())
-        for(i in 0 until brands.length()){
+    private fun getCpuMotherboardInfo(
+        brandId: String,
+        seriesId: String,
+        modelId: String
+    ): Pair<List<String>, List<String>> {
+        val brands =
+            readJsonArrayFromAssets("cpu_data.json") ?: return Pair(emptyList(), emptyList())
+        for (i in 0 until brands.length()) {
             val brandObj = brands.getJSONObject(i)
-            if(brandId == brandObj.optString("id")){
+            if (brandId == brandObj.optString("id")) {
                 val seriesArray = brandObj.optJSONArray("series") ?: continue
-                for(j in 0 until seriesArray.length()){
+                for (j in 0 until seriesArray.length()) {
                     val seriesObj = seriesArray.getJSONObject(j)
-                    if(seriesId == seriesObj.optString("id")){
-                        val supportedMotherboards = seriesObj.optJSONArray("supportedMotherboards")?.toStringList()
-                            ?: emptyList()
+                    if (seriesId == seriesObj.optString("id")) {
+                        val supportedMotherboards =
+                            seriesObj.optJSONArray("supportedMotherboards")?.toStringList()
+                                ?: emptyList()
                         val modelArray = seriesObj.optJSONArray("model") ?: continue
-                        for(k in 0 until modelArray.length()){
+                        for (k in 0 until modelArray.length()) {
                             val modelObj = modelArray.getJSONObject(k)
-                            if(modelId == modelObj.optString("id")){
-                                val recommendedMotherboards = modelObj.optJSONArray("recommendedMotherboards")?.toStringList()
-                                    ?: emptyList()
+                            if (modelId == modelObj.optString("id")) {
+                                val recommendedMotherboards =
+                                    modelObj.optJSONArray("recommendedMotherboards")?.toStringList()
+                                        ?: emptyList()
                                 return Pair(supportedMotherboards, recommendedMotherboards)
                             }
                         }
@@ -378,29 +421,31 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun findCpuModel(bean: CPUBean?): CpuModelBean? {
-        if(bean==null){
+        if (bean == null) {
             return null
         }
         val brands = readJsonArrayFromAssets("cpu_data.json") ?: return null
-        for(i in 0 until brands.length()){
+        for (i in 0 until brands.length()) {
             val brandObj = brands.getJSONObject(i)
-            if(bean.brandId == brandObj.optString("id")){
+            if (bean.brandId == brandObj.optString("id")) {
                 val seriesArray = brandObj.optJSONArray("series") ?: continue
-                for(j in 0 until seriesArray.length()){
+                for (j in 0 until seriesArray.length()) {
                     val seriesObj = seriesArray.getJSONObject(j)
-                    if(bean.seriesId == seriesObj.optString("id")){
+                    if (bean.seriesId == seriesObj.optString("id")) {
                         val modelArray = seriesObj.optJSONArray("model") ?: continue
-                        for(k in 0 until modelArray.length()){
+                        for (k in 0 until modelArray.length()) {
                             val modelObj = modelArray.getJSONObject(k)
-                            if(bean.modelId == modelObj.optString("id")){
+                            if (bean.modelId == modelObj.optString("id")) {
                                 return CpuModelBean(
                                     id = modelObj.optString("id"),
                                     code = modelObj.optString("code"),
                                     name = modelObj.optString("name"),
                                     powerConsumption = modelObj.optString("powerConsumption"),
                                     releaseYear = modelObj.optString("releaseYear"),
-                                    supportedMotherboards = bean.supportedMotherboards ?: emptyList(),
-                                    recommendedMotherboards = bean.recommendedMotherboards ?: emptyList()
+                                    supportedMotherboards = bean.supportedMotherboards
+                                        ?: emptyList(),
+                                    recommendedMotherboards = bean.recommendedMotherboards
+                                        ?: emptyList()
                                 )
                             }
                         }
@@ -412,21 +457,21 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun findGpuModel(bean: GPUBean?): GpuModelBean? {
-        if(bean==null){
+        if (bean == null) {
             return null
         }
         val brands = readJsonArrayFromAssets("gpu_data.json") ?: return null
-        for(i in 0 until brands.length()){
+        for (i in 0 until brands.length()) {
             val brandObj = brands.getJSONObject(i)
-            if(bean.brandId == brandObj.optString("id")){
+            if (bean.brandId == brandObj.optString("id")) {
                 val seriesArray = brandObj.optJSONArray("series") ?: continue
-                for(j in 0 until seriesArray.length()){
+                for (j in 0 until seriesArray.length()) {
                     val seriesObj = seriesArray.getJSONObject(j)
-                    if(bean.seriesId == seriesObj.optString("id")){
+                    if (bean.seriesId == seriesObj.optString("id")) {
                         val modelArray = seriesObj.optJSONArray("model") ?: continue
-                        for(k in 0 until modelArray.length()){
+                        for (k in 0 until modelArray.length()) {
                             val modelObj = modelArray.getJSONObject(k)
-                            if(bean.modelId == modelObj.optString("id")){
+                            if (bean.modelId == modelObj.optString("id")) {
                                 return GpuModelBean(
                                     id = modelObj.optString("id"),
                                     code = modelObj.optString("code"),
@@ -443,12 +488,12 @@ class MainActivity : ComponentActivity() {
         return null
     }
 
-    private fun readJsonArrayFromAssets(fileName:String): JSONArray?{
-        return try{
+    private fun readJsonArrayFromAssets(fileName: String): JSONArray? {
+        return try {
             val jsonString = assets.open(fileName).bufferedReader().use { it.readText() }
             JSONArray(jsonString)
-        }catch (e:Exception){
-            Log.e("StartCal","读取 $fileName 失败",e)
+        } catch (e: Exception) {
+            Log.e("StartCal", "读取 $fileName 失败", e)
             null
         }
     }
@@ -460,6 +505,7 @@ class MainActivity : ComponentActivity() {
         }
         return result
     }
+
     private fun setTextStatus(textView: TextView, context: String, mode: Int) {
         // mode 1是灰色字，0是白色字
         textView.text = context
@@ -471,17 +517,30 @@ class MainActivity : ComponentActivity() {
         textView.setTextColor(ContextCompat.getColor(this, colorRes))
     }
 
-    private fun checkStartCalStatus(){
-        if(cpuValue!=null&& gpuValue!=null && diskVale!=null){
-            startCalButton.alpha=1f
+    private fun checkStartCalStatus() {
+        if (cpuValue != null && gpuValue != null && diskVale != null) {
+            startCalButton.alpha = 1f
             startCalButton.setOnClickListener(object : OnClickListener {
                 override fun onClick(v: View?) {
                     startCal()
                 }
             })
-        }else{
-            startCalButton.alpha=0.5f
+        } else {
+            startCalButton.alpha = 0.5f
             startCalButton.setOnClickListener(object : OnClickListener {
+                override fun onClick(v: View?) {
+                    //去掉了点击时间
+                }
+            })
+        }
+        if (cpuValue != null && gpuValue != null && diskVale != null && expectPowerValue != null && supportedMotherboardValue != null && suggestMotherboardValue != null) {
+            saveConfigButton.alpha = 1f
+            saveConfigButton.setOnClickListener {
+                showConfigNameDialog()
+            }
+        } else {
+            saveConfigButton.alpha = 0.5f
+            saveConfigButton.setOnClickListener(object : OnClickListener {
                 override fun onClick(v: View?) {
                     //去掉了点击时间
                 }
@@ -489,29 +548,29 @@ class MainActivity : ComponentActivity() {
         }
 
     }
-    
+
     private fun showConfigNameDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_config_name)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        
+
         // 设置对话框宽度
         val window = dialog.window
         window?.setLayout(
             (resources.displayMetrics.widthPixels * 0.85).toInt(),
             android.view.ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        
+
         val editText = dialog.findViewById<EditText>(R.id.configNameEditText)
         val charCountText = dialog.findViewById<TextView>(R.id.charCountText)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
         val confirmButton = dialog.findViewById<Button>(R.id.confirmButton)
-        
+
         // 字符计数监听
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val text = s?.toString() ?: ""
                 // 验证输入：仅支持汉字/字母/数字
@@ -523,22 +582,22 @@ class MainActivity : ComponentActivity() {
                     editText.setSelection(validText.length)
                     return
                 }
-                if(text.length>0){
-                    confirmButton.alpha=1f
-                }else{
-                    confirmButton.alpha=0.5f
+                if (text.length > 0) {
+                    confirmButton.alpha = 1f
+                } else {
+                    confirmButton.alpha = 0.5f
                 }
                 charCountText.text = "${text.length}/10"
             }
-            
+
             override fun afterTextChanged(s: Editable?) {}
         })
-        
+
         // 取消按钮
         cancelButton.setOnClickListener {
             dialog.dismiss()
         }
-        
+
         // 确定按钮
         confirmButton.setOnClickListener {
             val configName = editText.text.toString().trim()
@@ -548,10 +607,85 @@ class MainActivity : ComponentActivity() {
             }
             // TODO: 保存配置逻辑
             Log.i("保存配置", "配置名称: $configName")
-            Toast.makeText(this, "配置已保存: $configName", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
+
+            createCollection(dialog, configName)
+
         }
-        
         dialog.show()
+    }
+
+    private fun createCollection(dialog: Dialog, configName: String) {
+        lifecycleScope.launch {
+            try {
+                val request = CreateCollectionRequest(
+                    userId = "123",
+                    collectName = configName,
+                    cpuId = cpuValue!!.modelId,
+                    gpuId = gpuValue!!.modelId,
+                    diskCount = diskVale!!.name,
+                    cpuName = cpuValue!!.cpuName,
+                    gpuName = gpuValue!!.gpuName,
+                    totalPowerConsumption = expectPowerValue.toString(),
+                    supportedMotherboard = supportedMotherboardValue.toString(),
+                    suggestMotherboard = suggestMotherboardValue.toString()
+                )
+
+                val response = ApiClient.collectionApi.createCollection(request)
+
+                if (response.code == 0) {
+
+                    Toast.makeText(baseContext, "配置已保存", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                    loadCollectionList("123") //请求看看有没有结果
+                } else {
+
+                    Toast.makeText(baseContext, "配置保存失败", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Log.e("API", "请求异常: ${e.message}")
+            }
+        }
+    }
+    private fun loadCollectionList(userId: String) {
+        lifecycleScope.launch {
+            try {
+                val request = LoadCollectionListRequest(userId = userId)
+                Log.i("API", "开始加载收藏列表，user_id: $userId")
+
+                val response = ApiClient.collectionApi.loadCollectionList(request)
+                Log.i("API", "收到响应，code: ${response.code}")
+
+                if (response.code == 0) {
+                    val collectionList = response.data
+                    Log.i("API", "加载收藏列表成功，共 ${collectionList.size} 条")
+                    
+                    if (collectionList.isEmpty()) {
+                        Log.i("API", "收藏列表为空")
+                    } else {
+                        for ((index, item) in collectionList.withIndex()) {
+                            Log.i("API", "========== Collection ${index + 1} ==========")
+                            Log.i("API", "ID: ${item.id}")
+                            Log.i("API", "用户ID: ${item.user_id}")
+                            Log.i("API", "配置名称: ${item.collect_name}")
+                            Log.i("API", "CPU ID: ${item.cpu_id}, CPU 名称: ${item.cpu_name}")
+                            Log.i("API", "GPU ID: ${item.gpu_id}, GPU 名称: ${item.gpu_name}")
+                            Log.i("API", "硬盘数量: ${item.disk_count}")
+                            Log.i("API", "总功耗: ${item.total_powerConsumption}W")
+                            Log.i("API", "支持的主板: ${item.supportedMotherboard}")
+                            Log.i("API", "推荐的主板: ${item.suggestMotherboard}")
+                            Log.i("API", "创建时间: ${item.create_time}")
+                            Log.i("API", "更新时间: ${item.update_time}")
+                            Log.i("API", "=======================================")
+                        }
+                    }
+                } else {
+                    Log.e("API", "加载收藏列表失败，code: ${response.code}")
+                    Toast.makeText(baseContext, "加载收藏列表失败", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Log.e("API", "请求异常: ${e.message}", e)
+                Toast.makeText(baseContext, "请求异常: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

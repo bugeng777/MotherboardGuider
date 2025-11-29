@@ -49,13 +49,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    
+
     // Material Components for BottomSheetDialog
     implementation(libs.material)
-    
+
     // RecyclerView
     implementation(libs.androidx.recyclerview)
-    
+
     // 使用原生实现，无需额外依赖
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -66,6 +66,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.14")
-    implementation ("com.github.gzu-liyujiang.AndroidPicker:AddressPicker:4.1.14")
-    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+    implementation("com.github.gzu-liyujiang.AndroidPicker:AddressPicker:4.1.14")
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
 }

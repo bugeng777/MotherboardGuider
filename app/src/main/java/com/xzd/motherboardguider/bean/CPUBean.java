@@ -6,6 +6,8 @@ public class CPUBean {
     private String brandId;
     private String seriesId;
     private String modelId;
+
+    private String cpuName;
     private List<String> supportedMotherboards;
     private List<String> recommendedMotherboards;
 
@@ -47,5 +49,13 @@ public class CPUBean {
 
     public void setRecommendedMotherboards(List<String> recommendedMotherboards) {
         this.recommendedMotherboards = recommendedMotherboards;
+    }
+
+    public String getCpuName() {
+        return cpuName;
+    }
+
+    public void setCpuName(String cpuName) {
+        this.cpuName = cpuName;
     }
 }
