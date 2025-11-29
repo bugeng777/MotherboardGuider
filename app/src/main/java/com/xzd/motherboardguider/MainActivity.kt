@@ -1,6 +1,7 @@
 package com.xzd.motherboardguider
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -59,6 +60,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var expectSuggestMotherboard: TextView
     private lateinit var expectSupportMotherboard: TextView
     private lateinit var saveConfigButton: RelativeLayout
+    private lateinit var mySettingButton: RelativeLayout
     private lateinit var expectSupportMotherboardList: FlexboxLayout
     private lateinit var startCalText: TextView
     private var calCount = 0;// 如果是0，就显示开始测算，如果是0以外的数字，就显示重新测算
@@ -68,6 +70,7 @@ class MainActivity : ComponentActivity() {
         cpuSelectorText = findViewById(R.id.cpuSelectorText)
         gpuSelectorText = findViewById(R.id.gpuSelectorText)
         diskSelectorText = findViewById(R.id.diskSelectorText)
+
         val cpuSelectorButton = findViewById<LinearLayout>(R.id.cpuSelectorButton)
         cpuSelectorButton.setOnClickListener {
             showCpuPicker()
@@ -87,7 +90,15 @@ class MainActivity : ComponentActivity() {
         expectSupportMotherboardList = findViewById(R.id.expectSupportMotherboardList)
         startCalText = findViewById(R.id.startCalText)
         saveConfigButton = findViewById<RelativeLayout>(R.id.saveConfigButton)
+        mySettingButton = findViewById(R.id.mySettingButton)
 
+        mySettingButton.setOnClickListener(object :OnClickListener{
+            override fun onClick(v: View?) {
+                val intent=Intent(baseContext,Collection::class.java)
+                startActivity(intent)
+            }
+
+        })
     }
 
     private fun resetExpectText() {

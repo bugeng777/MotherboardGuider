@@ -7,25 +7,34 @@
         android:id="@+id/collectionTop"
         android:background="#151B22"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
-        <ImageView
-            android:src="@mipmap/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"/>
-        <TextView
-            android:layout_centerInParent="true"
-            android:textSize="20sp"
-            android:textColor="#fff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我的配置"/>
+        android:layout_height="96dp">
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            >
+            <ImageView
+                android:id="@+id/collectionBackButton"
+                android:src="@mipmap/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的配置"/>
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hardwareListView"
         android:background="#171C21"
-        android:layout_below="@+id/collectionTop"
+        android:layout_below="@id/collectionTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>
