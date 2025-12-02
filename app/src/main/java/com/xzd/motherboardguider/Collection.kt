@@ -1,5 +1,6 @@
 package com.xzd.motherboardguider
 
+import SpacingItemDecoration
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,34 +10,56 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.xzd.motherboardguider.adapter.CollectionAdapter
 import com.xzd.motherboardguider.api.ApiClient
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
+import com.xzd.motherboardguider.utils.PrefsManager
 import kotlinx.coroutines.launch
 
 class Collection : ComponentActivity(){
     private lateinit var hardwareListView:RecyclerView
     private lateinit var collectionBackButton:ImageView
+    private lateinit var collectionAdapter: CollectionAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collection)
         hardwareListView=findViewById(R.id.hardwareListView)
         collectionBackButton=findViewById(R.id.collectionBackButton)
+        // 在 Collection.kt 的 onCreate 方法中，初始化 RecyclerView 后添加：
+        val spacing = (20 * resources.displayMetrics.density).toInt()
+        hardwareListView.addItemDecoration(SpacingItemDecoration(spacing))
+        // 初始化 RecyclerView
+        collectionAdapter = CollectionAdapter(emptyList())
+        hardwareListView.layoutManager = LinearLayoutManager(this)
+        hardwareListView.adapter = collectionAdapter
+        
         collectionBackButton.setOnClickListener(object:OnClickListener{
             override fun onClick(v: View?) {
-                val intent= Intent(baseContext,MainActivity::class.java)
+                val intent= Intent(this@Collection,MainActivity::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
         })
 
-        loadCollectionList("123") //请求看看有没有结果
+        loadCollectionList() //请求看看有没有结果
     }
-    private fun loadCollectionList(userId: String) {
+    private fun loadCollectionList() {
         lifecycleScope.launch {
             try {
-                val request = LoadCollectionListRequest(userId = userId)
-                Log.i("API", "开始加载收藏列表，user_id: $userId")
+                val token = PrefsManager.getToken(this@Collection)
+                if (token == null) {
+                    Toast.makeText(baseContext, "请先登录", Toast.LENGTH_SHORT).show()
+                    // 跳转到登录页面
+                    val intent = Intent(this@Collection, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                    return@launch
+                }
+
+                val request = LoadCollectionListRequest(token = token)
+                Log.i("API", "开始加载收藏列表，token: $token")
 
                 val response = ApiClient.collectionApi.loadCollectionList(request)
                 Log.i("API", "收到响应，code: ${response.code}")
@@ -44,6 +67,9 @@ class Collection : ComponentActivity(){
                 if (response.code == 0) {
                     val collectionList = response.data
                     Log.i("API", "加载收藏列表成功，共 ${collectionList.size} 条")
+
+                    // 更新 RecyclerView 数据
+                    collectionAdapter.updateList(collectionList)
 
                     if (collectionList.isEmpty()) {
                         Log.i("API", "收藏列表为空")

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 // 请求数据类
 data class CreateCollectionRequest(
-    @SerializedName("user_id") val userId: String,
+    @SerializedName("token") val token: String,
     @SerializedName("collect_name") val collectName: String,
     @SerializedName("cpu_id") val cpuId: String,
     @SerializedName("gpu_id") val gpuId: String,
@@ -15,4 +15,5 @@ data class CreateCollectionRequest(
     @SerializedName("supportedMotherboard") val supportedMotherboard: String = "",
     @SerializedName("suggestMotherboard") val suggestMotherboard: String = ""
 )
+
 

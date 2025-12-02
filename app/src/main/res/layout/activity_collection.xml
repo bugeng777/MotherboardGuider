@@ -32,6 +32,8 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/hardwareListView"
         android:background="#171C21"
         android:layout_below="@id/collectionTop"

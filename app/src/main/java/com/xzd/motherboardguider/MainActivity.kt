@@ -12,6 +12,7 @@ import android.view.View.OnClickListener
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -43,6 +44,7 @@ import kotlinx.coroutines.launch
 import com.xzd.motherboardguider.api.ApiClient
 import com.xzd.motherboardguider.bean.CreateCollectionRequest
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
+import com.xzd.motherboardguider.utils.PrefsManager
 
 class MainActivity : ComponentActivity() {
 
@@ -63,6 +65,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var mySettingButton: RelativeLayout
     private lateinit var expectSupportMotherboardList: FlexboxLayout
     private lateinit var startCalText: TextView
+    private lateinit var userInfoButton: ImageView
     private var calCount = 0;// 如果是0，就显示开始测算，如果是0以外的数字，就显示重新测算
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,10 +93,17 @@ class MainActivity : ComponentActivity() {
         expectSupportMotherboardList = findViewById(R.id.expectSupportMotherboardList)
         startCalText = findViewById(R.id.startCalText)
         saveConfigButton = findViewById<RelativeLayout>(R.id.saveConfigButton)
+        userInfoButton = findViewById(R.id.userInfoButton)
+        userInfoButton.setOnClickListener(object : OnClickListener {
+            override fun onClick(v: View?) {
+                val intent=Intent(this@MainActivity,Login::class.java)
+                startActivity(intent)
+            }
+        })
         mySettingButton = findViewById(R.id.mySettingButton)
         mySettingButton.setOnClickListener(object :OnClickListener{
             override fun onClick(v: View?) {
-                val intent=Intent(baseContext,Collection::class.java)
+                val intent=Intent(this@MainActivity,Collection::class.java)
                 startActivity(intent)
             }
         })
@@ -626,8 +636,18 @@ class MainActivity : ComponentActivity() {
     private fun createCollection(dialog: Dialog, configName: String) {
         lifecycleScope.launch {
             try {
+                val token = PrefsManager.getToken(this@MainActivity)
+                if (token == null) {
+                    Toast.makeText(baseContext, "请先登录", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                    // 跳转到登录页面
+                    val intent = Intent(this@MainActivity, Login::class.java)
+                    startActivity(intent)
+                    return@launch
+                }
+
                 val request = CreateCollectionRequest(
-                    userId = "123",
+                    token = token,
                     collectName = configName,
                     cpuId = cpuValue!!.modelId,
                     gpuId = gpuValue!!.modelId,
@@ -652,6 +672,7 @@ class MainActivity : ComponentActivity() {
                 }
             } catch (e: Exception) {
                 Log.e("API", "请求异常: ${e.message}")
+                Toast.makeText(baseContext, "请求异常: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

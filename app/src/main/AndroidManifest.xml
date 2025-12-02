@@ -27,9 +27,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Collection"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"/>
+        <activity android:name=".Login"
+            android:exported="true"/>
+        <activity android:name=".ForgetPwd"/>
+        <activity android:name=".Register"/>
     </application>
 
 </manifest>
