@@ -1,11 +1,14 @@
 package com.xzd.motherboardguider
 
 import SpacingItemDecoration
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.Window
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -14,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xzd.motherboardguider.adapter.CollectionAdapter
 import com.xzd.motherboardguider.api.ApiClient
+import com.xzd.motherboardguider.bean.CollectionItem
+import com.xzd.motherboardguider.bean.DeleteCollectionRequest
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
 import com.xzd.motherboardguider.utils.PrefsManager
 import kotlinx.coroutines.launch
@@ -31,7 +36,9 @@ class Collection : ComponentActivity(){
         val spacing = (20 * resources.displayMetrics.density).toInt()
         hardwareListView.addItemDecoration(SpacingItemDecoration(spacing))
         // 初始化 RecyclerView
-        collectionAdapter = CollectionAdapter(emptyList())
+        collectionAdapter = CollectionAdapter(emptyList()) { item ->
+            showDeleteConfirmDialog(item)
+        }
         hardwareListView.layoutManager = LinearLayoutManager(this)
         hardwareListView.adapter = collectionAdapter
         
@@ -93,6 +100,73 @@ class Collection : ComponentActivity(){
                 } else {
                     Log.e("API", "加载收藏列表失败，code: ${response.code}")
                     Toast.makeText(baseContext, "加载收藏列表失败", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Log.e("API", "请求异常: ${e.message}", e)
+                Toast.makeText(baseContext, "请求异常: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
+    private fun showDeleteConfirmDialog(item: CollectionItem) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_delete_confirm)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        // 设置对话框宽度
+        val window = dialog.window
+        window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val confirmButton = dialog.findViewById<Button>(R.id.confirmButton)
+
+        // 取消按钮
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        // 确定按钮
+        confirmButton.setOnClickListener {
+            dialog.dismiss()
+            deleteCollection(item)
+        }
+        
+        dialog.show()
+    }
+    
+    private fun deleteCollection(item: CollectionItem) {
+        lifecycleScope.launch {
+            try {
+                val token = PrefsManager.getToken(this@Collection)
+                if (token == null) {
+                    Toast.makeText(baseContext, "请先登录", Toast.LENGTH_SHORT).show()
+                    // 跳转到登录页面
+                    val intent = Intent(this@Collection, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                    return@launch
+                }
+
+                val request = DeleteCollectionRequest(
+                    token = token,
+                    collection_id = item.id
+                )
+                Log.i("API", "开始删除收藏，token: $token, collection_id: ${item.id}")
+
+                val response = ApiClient.collectionApi.deleteCollection(request)
+                Log.i("API", "收到响应，code: ${response.code}, data: ${response.data}")
+
+                if (response.code == 0) {
+                    Toast.makeText(baseContext, "删除成功", Toast.LENGTH_SHORT).show()
+                    // 重新加载收藏列表
+                    loadCollectionList()
+                } else {
+                    Log.e("API", "删除收藏失败，code: ${response.code}")
+                    Toast.makeText(baseContext, response.data ?: "删除失败", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Log.e("API", "请求异常: ${e.message}", e)

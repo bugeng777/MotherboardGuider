@@ -3,6 +3,7 @@ package com.xzd.motherboardguider.api
 import com.xzd.motherboardguider.bean.ApiResponse
 import com.xzd.motherboardguider.bean.CollectionListResponse
 import com.xzd.motherboardguider.bean.CreateCollectionRequest
+import com.xzd.motherboardguider.bean.DeleteCollectionRequest
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
 import com.xzd.motherboardguider.bean.ForgetPwdRequest
 import com.xzd.motherboardguider.bean.LoginRequest
@@ -19,6 +20,9 @@ interface CollectionApi {
     
     @POST("hardware/get_collection_list_api/")
     suspend fun loadCollectionList(@Body request: LoadCollectionListRequest): CollectionListResponse
+    
+    @POST("hardware/delete_collection_api/")
+    suspend fun deleteCollection(@Body request: DeleteCollectionRequest): ApiResponse
     
     @POST("accounts/login_check/")
     suspend fun login(@Body request: LoginRequest): LoginResponse

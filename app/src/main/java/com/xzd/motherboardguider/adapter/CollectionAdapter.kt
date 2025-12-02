@@ -3,13 +3,15 @@ package com.xzd.motherboardguider.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.xzd.motherboardguider.R
 import com.xzd.motherboardguider.bean.CollectionItem
 
 class CollectionAdapter(
-    private var collectionList: List<CollectionItem>
+    private var collectionList: List<CollectionItem>,
+    private val onDeleteClick: (CollectionItem) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -28,6 +30,7 @@ class CollectionAdapter(
         val itemPower: TextView = itemView.findViewById(R.id.collectionItemPower)
         val expectSuggestMotherboard: TextView = itemView.findViewById(R.id.expectSuggestMotherboard)
         val expectSupportMotherboard: TextView = itemView.findViewById(R.id.expectSupportMotherboard)
+        val deleteButton: RelativeLayout = itemView.findViewById(R.id.deleteButton)
     }
 
     // 空提示和底部提示的 ViewHolder（它们布局相同，可以共用）
@@ -97,6 +100,11 @@ class CollectionAdapter(
                     item.supportedMotherboard
                 } else {
                     "待测算"
+                }
+                
+                // 设置删除按钮点击事件
+                holder.deleteButton.setOnClickListener {
+                    onDeleteClick(item)
                 }
             }
             is HintViewHolder -> {
