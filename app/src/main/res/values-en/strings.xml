@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MotherboardGuider</string>
+    
+    <!-- Main Screen -->
+    <string name="my_config">My Config</string>
+    <string name="save_config">Save Config</string>
+    <string name="app_title">Motherboard Guider</string>
+    <string name="language_cn">CN</string>
+    <string name="language_en">EN</string>
+    <string name="select_config_info">Please select your configuration</string>
+    <string name="cpu">CPU</string>
+    <string name="gpu">GPU</string>
+    <string name="disk_count">Disk Count</string>
+    <string name="please_select">Please Select</string>
+    <string name="start_calculation">Start Calculation</string>
+    <string name="recalculate">Recalculate</string>
+    <string name="expected_power">Expected Power</string>
+    <string name="motherboard_series">Motherboard Series</string>
+    <string name="recommended">Recommended</string>
+    <string name="supported">Supported</string>
+    <string name="pending_calculation">Pending</string>
+    <string name="watt">W</string>
+    
+    <!-- Dialog -->
+    <string name="select_language">Select Language</string>
+    <string name="chinese">简体中文</string>
+    <string name="english">English</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="config_name">Config Name</string>
+    <string name="config_name_hint">Chinese/English/Numbers only</string>
+    <string name="please_enter_config_name">Please enter config name</string>
+    
+    <!-- Messages -->
+    <string name="config_saved">Config saved</string>
+    <string name="config_save_failed">Config save failed</string>
+    <string name="please_login_first">Please login first</string>
+    <string name="cannot_read_config">Cannot read selected config, please try again</string>
+    <string name="option_error">Option error, please restart app</string>
+    
+    <!-- Picker Titles -->
+    <string name="cpu_picker_title">CPU</string>
+    <string name="gpu_picker_title">GPU</string>
+    <string name="disk_picker_title">Disk Count</string>
+</resources>
+
+

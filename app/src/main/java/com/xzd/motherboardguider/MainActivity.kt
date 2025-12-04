@@ -1,6 +1,7 @@
 package com.xzd.motherboardguider
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -45,6 +46,7 @@ import com.xzd.motherboardguider.api.ApiClient
 import com.xzd.motherboardguider.bean.CreateCollectionRequest
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
 import com.xzd.motherboardguider.utils.PrefsManager
+import com.xzd.motherboardguider.utils.LocaleHelper
 
 class MainActivity : ComponentActivity() {
 
@@ -66,7 +68,16 @@ class MainActivity : ComponentActivity() {
     private lateinit var expectSupportMotherboardList: FlexboxLayout
     private lateinit var startCalText: TextView
     private lateinit var userInfoButton: ImageView
+    private lateinit var languageButton: LinearLayout
+    private lateinit var languageText: TextView
     private var calCount = 0;// 如果是0，就显示开始测算，如果是0以外的数字，就显示重新测算
+    
+    override fun attachBaseContext(newBase: Context) {
+        val savedLanguage = PrefsManager.getLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, savedLanguage)
+        super.attachBaseContext(context)
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -107,12 +118,20 @@ class MainActivity : ComponentActivity() {
                 startActivity(intent)
             }
         })
+        
+        // 语言切换按钮
+        languageButton = findViewById(R.id.languageButton)
+        languageText = findViewById(R.id.languageText)
+        updateLanguageDisplay()
+        languageButton.setOnClickListener {
+            showLanguageSelectionDialog()
+        }
     }
 
     private fun resetExpectText() {
-        setTextStatus(expectPower, "待测算", 1) //重制下面预计功耗和主板系列
-        setTextStatus(expectSupportMotherboard, "待测算", 1) //重制下面预计功耗和主板系列
-        setTextStatus(expectSuggestMotherboard, "待测算", 1) //重制下面预计功耗和主板系列
+        setTextStatus(expectPower, getString(R.string.pending_calculation), 1) //重制下面预计功耗和主板系列
+        setTextStatus(expectSupportMotherboard, getString(R.string.pending_calculation), 1) //重制下面预计功耗和主板系列
+        setTextStatus(expectSuggestMotherboard, getString(R.string.pending_calculation), 1) //重制下面预计功耗和主板系列
         expectSupportMotherboardList.removeAllViews() //删掉所有TextView
         expectSupportMotherboard.visibility = View.VISIBLE
         expectSupportMotherboardList.visibility = View.GONE
@@ -127,7 +146,7 @@ class MainActivity : ComponentActivity() {
             data.add(DiskBean(item, "$item"))
         }
         val diskPicker = OptionPicker(this)
-        diskPicker.setTitle("硬盘数量")
+        diskPicker.setTitle(getString(R.string.disk_picker_title))
         diskPicker.setBodyWidth(140)
         diskPicker.setData(data)
         diskPicker.setDefaultPosition(2)
@@ -192,7 +211,7 @@ class MainActivity : ComponentActivity() {
                 .countyNameField("name")
                 .build()
         )
-        cpuPicker.setTitle("CPU");
+        cpuPicker.setTitle(getString(R.string.cpu_picker_title));
         cpuPicker.setDefaultValue("Intel", "200系列", "Ultra 285K");
         cpuPicker.setOnAddressPickedListener(object : OnAddressPickedListener {
             override fun onAddressPicked(
@@ -221,9 +240,9 @@ class MainActivity : ComponentActivity() {
                     cpuValue = cb
                 } else {
                     cpuValue = null
-                    Toast.makeText(baseContext, "选项内容有错误请重启app", Toast.LENGTH_SHORT)
+                    Toast.makeText(baseContext, getString(R.string.option_error), Toast.LENGTH_SHORT)
                         .show()
-                    setTextStatus(cpuSelectorText!!, "请选择", 1)
+                    setTextStatus(cpuSelectorText!!, getString(R.string.please_select), 1)
                 }
                 checkStartCalStatus() //检查一下开始计算的按钮状态
             }
@@ -286,7 +305,7 @@ class MainActivity : ComponentActivity() {
                 .countyNameField("name")
                 .build()
         )
-        gpuPicker.setTitle("GPU");
+        gpuPicker.setTitle(getString(R.string.gpu_picker_title));
         gpuPicker.setDefaultValue("Intel", "200系列", "Ultra 285K");
         gpuPicker.setOnAddressPickedListener(object : OnAddressPickedListener {
             override fun onAddressPicked(
@@ -306,9 +325,9 @@ class MainActivity : ComponentActivity() {
                     gpuValue = gb
                 } else {
                     gpuValue = null
-                    Toast.makeText(baseContext, "选项内容有错误请重启app", Toast.LENGTH_SHORT)
+                    Toast.makeText(baseContext, getString(R.string.option_error), Toast.LENGTH_SHORT)
                         .show()
-                    setTextStatus(gpuSelectorText!!, "请选择", 1)
+                    setTextStatus(gpuSelectorText!!, getString(R.string.please_select), 1)
                 }
                 checkStartCalStatus() //检查一下开始计算的按钮状态
             }
@@ -356,7 +375,7 @@ class MainActivity : ComponentActivity() {
         val cpuModel = findCpuModel(cpuValue)
         val gpuModel = findGpuModel(gpuValue)
         if (cpuModel == null || gpuModel == null) {
-            Toast.makeText(this, "无法读取所选配置，请重试", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.cannot_read_config), Toast.LENGTH_SHORT).show()
             return
         }
         Log.i(
@@ -400,7 +419,7 @@ class MainActivity : ComponentActivity() {
         }
         setTextStatus(expectPower, totalPowerConsumption.toString(), 0)
         calCount = 1;
-        startCalText.text = "重新测算"
+        startCalText.text = getString(R.string.recalculate)
         checkStartCalStatus() // 判断一下保存配置的按钮能不能用了
         // TODO: 后续在这里继续完成测算逻辑
     }
@@ -621,7 +640,7 @@ class MainActivity : ComponentActivity() {
         confirmButton.setOnClickListener {
             val configName = editText.text.toString().trim()
             if (configName.isEmpty()) {
-                Toast.makeText(this, "请输入配置名称", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.please_enter_config_name), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             // TODO: 保存配置逻辑
@@ -638,7 +657,7 @@ class MainActivity : ComponentActivity() {
             try {
                 val token = PrefsManager.getToken(this@MainActivity)
                 if (token == null) {
-                    Toast.makeText(baseContext, "请先登录", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.please_login_first), Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                     // 跳转到登录页面
                     val intent = Intent(this@MainActivity, Login::class.java)
@@ -663,17 +682,101 @@ class MainActivity : ComponentActivity() {
 
                 if (response.code == 0) {
 
-                    Toast.makeText(baseContext, "配置已保存", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.config_saved), Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
 
                 } else {
 
-                    Toast.makeText(baseContext, "配置保存失败", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.config_save_failed), Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Log.e("API", "请求异常: ${e.message}")
                 Toast.makeText(baseContext, "请求异常: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    /**
+     * 显示语言选择对话框
+     */
+    private fun showLanguageSelectionDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_language_selection)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        // 设置对话框宽度
+        val window = dialog.window
+        window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val languageZhLayout = dialog.findViewById<LinearLayout>(R.id.languageZhLayout)
+        val languageEnLayout = dialog.findViewById<LinearLayout>(R.id.languageEnLayout)
+        val checkZh = dialog.findViewById<ImageView>(R.id.checkZh)
+        val checkEn = dialog.findViewById<ImageView>(R.id.checkEn)
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        val confirmButton = dialog.findViewById<Button>(R.id.confirmButton)
+
+        // 获取当前语言
+        val currentLanguage = PrefsManager.getLanguage(this)
+        var selectedLanguage = currentLanguage
+
+        // 设置当前选中状态
+        if (currentLanguage == "zh") {
+            checkZh.visibility = View.VISIBLE
+            checkEn.visibility = View.GONE
+        } else {
+            checkZh.visibility = View.GONE
+            checkEn.visibility = View.VISIBLE
+        }
+
+        // 中文选项点击
+        languageZhLayout.setOnClickListener {
+            selectedLanguage = "zh"
+            checkZh.visibility = View.VISIBLE
+            checkEn.visibility = View.GONE
+        }
+
+        // 英文选项点击
+        languageEnLayout.setOnClickListener {
+            selectedLanguage = "en"
+            checkZh.visibility = View.GONE
+            checkEn.visibility = View.VISIBLE
+        }
+
+        // 取消按钮
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        // 确定按钮
+        confirmButton.setOnClickListener {
+            if (selectedLanguage != currentLanguage) {
+                // 保存语言设置
+                PrefsManager.saveLanguage(this, selectedLanguage)
+                // 重新设置语言
+                LocaleHelper.setLocale(this, selectedLanguage)
+                // 重启Activity以应用语言更改
+                recreate()
+            } else {
+                dialog.dismiss()
+            }
+        }
+
+        dialog.show()
+    }
+
+    /**
+     * 更新语言显示文本
+     */
+    private fun updateLanguageDisplay() {
+        val currentLanguage = PrefsManager.getLanguage(this)
+        languageText.text = when (currentLanguage) {
+            "zh" -> getString(R.string.language_cn)
+            "en" -> getString(R.string.language_en)
+            else -> getString(R.string.language_cn)
         }
     }
 

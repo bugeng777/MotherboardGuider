@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="我的配置"
+                android:text="@string/my_config"
                 android:textColor="#fff">
 
             </TextView>
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="保存配置"
+                android:text="@string/save_config"
                 android:textColor="#fff">
 
             </TextView>
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Motherboard Guider"
+                android:text="@string/app_title"
                 android:textColor="#fff"
                 android:textSize="20sp" />
 
@@ -82,6 +82,7 @@
 
 
             <LinearLayout
+                android:id="@+id/languageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
@@ -101,11 +102,12 @@
                     android:src="@mipmap/yuyan" />
 
                 <TextView
+                    android:id="@+id/languageText"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"
-                    android:text="CN"
+                    android:text="@string/language_cn"
                     android:textColor="#fff"
                     android:textSize="14sp" />
 
@@ -132,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="请选择你的配置信息"
+                android:text="@string/select_config_info"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -147,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="CPU"
+                    android:text="@string/cpu"
                     android:textColor="#fff"
                     android:textSize="16sp" />
 
@@ -164,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="6dp"
-                        android:text="请选择"
+                        android:text="@string/please_select"
                         android:textColor="@color/home_name_dark"
                         android:textSize="14sp" />
 
@@ -185,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="显卡"
+                    android:text="@string/gpu"
                     android:textColor="#fff"
                     android:textSize="16sp" />
 
@@ -203,7 +205,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="6dp"
-                        android:text="请选择"
+                        android:text="@string/please_select"
                         android:textColor="@color/home_name_dark"
                         android:textSize="14sp" />
 
@@ -225,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="硬盘个数"
+                    android:text="@string/disk_count"
                     android:textColor="#fff"
                     android:textSize="16sp" />
 
@@ -243,7 +245,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="6dp"
-                        android:text="请选择"
+                        android:text="@string/please_select"
                         android:textColor="@color/home_name_dark"
                         android:textSize="14sp" />
 
@@ -264,7 +266,7 @@
                 android:layout_height="40dp">
                 <TextView
                     android:id="@+id/startCalText"
-                    android:text="开始测算"
+                    android:text="@string/start_calculation"
                     android:textColor="#fff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -291,7 +293,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="预计功耗"
+                        android:text="@string/expected_power"
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -312,13 +314,13 @@
                             android:layout_marginRight="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="待测算"
+                            android:text="@string/pending_calculation"
                             android:textColor="@color/home_name_dark"
                             android:textSize="14sp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="W"
+                            android:text="@string/watt"
                             android:textColor="#D0D2D3"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -340,7 +342,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="主板系列"
+                    android:text="@string/motherboard_series"
                     android:textColor="#fff"
                     android:textSize="16sp" />
 
@@ -378,7 +380,7 @@
                         android:paddingTop="2dp"
                         android:paddingEnd="4dp"
                         android:paddingBottom="2dp"
-                        android:text="推荐"
+                        android:text="@string/recommended"
                         android:textColor="#fff"/>
 
                     <TextView
@@ -417,7 +419,7 @@
                         android:paddingBottom="2dp"
                         android:textColor="#fff"
                         android:background="@drawable/main_support_title"
-                        android:text="支持"
+                        android:text="@string/supported"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
