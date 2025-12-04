@@ -8,3 +8,4 @@ data class DeleteCollectionRequest(
     @SerializedName("collection_id") val collection_id: Int
 )
 
+
