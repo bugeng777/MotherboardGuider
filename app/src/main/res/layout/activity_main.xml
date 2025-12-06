@@ -397,15 +397,17 @@
                     android:layout_width="0dp"
                     android:layout_height="16dp"/>
                 <View
-
+                    android:id="@+id/main_supprot_box_divide"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/pop_divider"
                     />
                 <View
+                    android:id="@+id/main_supprot_box_empty_gap"
                     android:layout_width="0dp"
                     android:layout_height="16dp"/>
                 <LinearLayout
+                    android:id="@+id/main_supprot_box"
                     android:layout_marginBottom="12dp"
                     android:gravity="start"
                     android:layout_width="match_parent"

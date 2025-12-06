@@ -70,6 +70,9 @@ class MainActivity : ComponentActivity() {
     private lateinit var userInfoButton: ImageView
     private lateinit var languageButton: LinearLayout
     private lateinit var languageText: TextView
+    private lateinit var mainSupprotBoxDivide: View
+    private lateinit var mainSupprotBoxEmptyGap: View
+    private lateinit var mainSupprotBox: LinearLayout
     private var calCount = 0;// 如果是0，就显示开始测算，如果是0以外的数字，就显示重新测算
     
     override fun attachBaseContext(newBase: Context) {
@@ -104,6 +107,9 @@ class MainActivity : ComponentActivity() {
         expectSupportMotherboardList = findViewById(R.id.expectSupportMotherboardList)
         startCalText = findViewById(R.id.startCalText)
         saveConfigButton = findViewById<RelativeLayout>(R.id.saveConfigButton)
+        mainSupprotBoxDivide = findViewById(R.id.main_supprot_box_divide)
+        mainSupprotBoxEmptyGap = findViewById(R.id.main_supprot_box_empty_gap)
+        mainSupprotBox = findViewById(R.id.main_supprot_box)
         userInfoButton = findViewById(R.id.userInfoButton)
         userInfoButton.setOnClickListener(object : OnClickListener {
             override fun onClick(v: View?) {
@@ -135,6 +141,9 @@ class MainActivity : ComponentActivity() {
         expectSupportMotherboardList.removeAllViews() //删掉所有TextView
         expectSupportMotherboard.visibility = View.VISIBLE
         expectSupportMotherboardList.visibility = View.GONE
+        mainSupprotBoxDivide.visibility = View.VISIBLE //重置时显示
+        mainSupprotBoxEmptyGap.visibility = View.VISIBLE //重置时显示
+        mainSupprotBox.visibility = View.VISIBLE //重置时显示
         expectPowerValue = null //临时变量清空
         supportedMotherboardValue = null //临时变量清空
         suggestMotherboardValue = null //临时变量清空
@@ -236,6 +245,7 @@ class MainActivity : ComponentActivity() {
                         getCpuMotherboardInfo(province.code, city.code, county.code)
                     cb.supportedMotherboards = motherboardInfo.first
                     cb.recommendedMotherboards = motherboardInfo.second
+                    cb.workstation = motherboardInfo.third
                     cb.cpuName = county.name
                     cpuValue = cb
                 } else {
@@ -418,6 +428,19 @@ class MainActivity : ComponentActivity() {
             expectSupportMotherboardList.addView(tv)
         }
         setTextStatus(expectPower, totalPowerConsumption.toString(), 0)
+        
+        // 根据 workstation 字段控制组件的显示/隐藏
+        val workstation = cpuValue?.workstation ?: "0"
+        if (workstation == "1") {
+            mainSupprotBoxDivide.visibility = View.GONE
+            mainSupprotBoxEmptyGap.visibility = View.GONE
+            mainSupprotBox.visibility = View.GONE
+        } else {
+            mainSupprotBoxDivide.visibility = View.VISIBLE
+            mainSupprotBoxEmptyGap.visibility = View.VISIBLE
+            mainSupprotBox.visibility = View.VISIBLE
+        }
+        
         calCount = 1;
         startCalText.text = getString(R.string.recalculate)
         checkStartCalStatus() // 判断一下保存配置的按钮能不能用了
@@ -428,9 +451,9 @@ class MainActivity : ComponentActivity() {
         brandId: String,
         seriesId: String,
         modelId: String
-    ): Pair<List<String>, List<String>> {
+    ): Triple<List<String>, List<String>, String> {
         val brands =
-            readJsonArrayFromAssets("cpu_data.json") ?: return Pair(emptyList(), emptyList())
+            readJsonArrayFromAssets("cpu_data.json") ?: return Triple(emptyList(), emptyList(), "0")
         for (i in 0 until brands.length()) {
             val brandObj = brands.getJSONObject(i)
             if (brandId == brandObj.optString("id")) {
@@ -448,14 +471,15 @@ class MainActivity : ComponentActivity() {
                                 val recommendedMotherboards =
                                     modelObj.optJSONArray("recommendedMotherboards")?.toStringList()
                                         ?: emptyList()
-                                return Pair(supportedMotherboards, recommendedMotherboards)
+                                val workstation = modelObj.optString("workstation", "0")
+                                return Triple(supportedMotherboards, recommendedMotherboards, workstation)
                             }
                         }
                     }
                 }
             }
         }
-        return Pair(emptyList(), emptyList())
+        return Triple(emptyList(), emptyList(), "0")
     }
 
     private fun findCpuModel(bean: CPUBean?): CpuModelBean? {

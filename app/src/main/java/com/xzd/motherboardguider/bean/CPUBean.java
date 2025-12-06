@@ -10,6 +10,7 @@ public class CPUBean {
     private String cpuName;
     private List<String> supportedMotherboards;
     private List<String> recommendedMotherboards;
+    private String workstation;
 
     public String getBrandId() {
         return brandId;
@@ -57,5 +58,13 @@ public class CPUBean {
 
     public void setCpuName(String cpuName) {
         this.cpuName = cpuName;
+    }
+
+    public String getWorkstation() {
+        return workstation;
+    }
+
+    public void setWorkstation(String workstation) {
+        this.workstation = workstation;
     }
 }
