@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="找回密码"
+                android:text="@string/reset_password"
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="85dp"
             android:backgroundTint="#161C21"
-            android:hint="请输入您的邮箱"
+            android:hint="@string/enter_email"
             android:inputType="textEmailAddress"
             android:maxLength="48"
             android:minHeight="40dp"
@@ -50,6 +50,7 @@
             android:paddingBottom="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#666666"
+            android:letterSpacing="0"
             android:textSize="14sp" />
         <View
             android:layout_width="match_parent"
@@ -61,11 +62,12 @@
             android:layout_marginTop="15dp">
 
             <EditText
+                android:letterSpacing="0"
                 android:id="@+id/forget_pwd_edit"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:backgroundTint="#161C21"
-                android:hint="请输入邮箱收到的验证码"
+                android:hint="@string/enter_verification_code"
                 android:inputType="text"
                 android:maxLength="6"
                 android:minHeight="40dp"
@@ -81,7 +83,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/login_register_now_text_underline"
-                android:text="获取验证码"
+                android:text="@string/get_verification_code"
                 android:textColor="#BDBCFF"
                 android:clickable="true"
                 android:focusable="true" />
@@ -98,7 +100,7 @@
             android:layout_height="45dp"
             android:backgroundTint="#161C21"
             android:layout_marginTop="15dp"
-            android:hint="请输入最长32位的新密码"
+            android:hint="@string/enter_new_password_max_32"
             android:inputType="textPassword"
             android:maxLength="32"
             android:minHeight="40dp"
@@ -107,6 +109,7 @@
             android:paddingBottom="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#666666"
+            android:letterSpacing="0"
             android:textSize="14sp" />
         <View
             android:layout_width="match_parent"
@@ -114,12 +117,13 @@
             android:background="#666666"/>
 
         <EditText
+            android:letterSpacing="0"
             android:id="@+id/forget_pwd_new_confirm_edit"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="15dp"
             android:backgroundTint="#161C21"
-            android:hint="请再次输入新密码"
+            android:hint="@string/confirm_new_password"
             android:inputType="textPassword"
             android:maxLength="32"
             android:minHeight="40dp"
@@ -147,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="修改密码"
+                android:text="@string/change_password"
                 android:textColor="#fff" />
         </RelativeLayout>
 
@@ -161,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_register_now_text_underline"
-                android:text="返回首页"
+                android:text="@string/back_to_home"
                 android:textColor="#BDBCFF" />
         </LinearLayout>
 

@@ -16,17 +16,26 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xzd.motherboardguider.adapter.CollectionAdapter
+import android.content.Context
 import com.xzd.motherboardguider.api.ApiClient
 import com.xzd.motherboardguider.bean.CollectionItem
 import com.xzd.motherboardguider.bean.DeleteCollectionRequest
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
 import com.xzd.motherboardguider.utils.PrefsManager
+import com.xzd.motherboardguider.utils.LocaleHelper
 import kotlinx.coroutines.launch
 
 class Collection : ComponentActivity(){
     private lateinit var hardwareListView:RecyclerView
     private lateinit var collectionBackButton:ImageView
     private lateinit var collectionAdapter: CollectionAdapter
+    
+    override fun attachBaseContext(newBase: Context) {
+        val savedLanguage = PrefsManager.getLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, savedLanguage)
+        super.attachBaseContext(context)
+    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collection)
@@ -57,7 +66,7 @@ class Collection : ComponentActivity(){
             try {
                 val token = PrefsManager.getToken(this@Collection)
                 if (token == null) {
-                    Toast.makeText(baseContext, "请先登录", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.please_login_first), Toast.LENGTH_SHORT).show()
                     // 跳转到登录页面
                     val intent = Intent(this@Collection, Login::class.java)
                     startActivity(intent)
@@ -99,7 +108,7 @@ class Collection : ComponentActivity(){
                     }
                 } else {
                     Log.e("API", "加载收藏列表失败，code: ${response.code}")
-                    Toast.makeText(baseContext, "加载收藏列表失败", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.load_collection_failed), Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Log.e("API", "请求异常: ${e.message}", e)
@@ -143,7 +152,7 @@ class Collection : ComponentActivity(){
             try {
                 val token = PrefsManager.getToken(this@Collection)
                 if (token == null) {
-                    Toast.makeText(baseContext, "请先登录", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.please_login_first), Toast.LENGTH_SHORT).show()
                     // 跳转到登录页面
                     val intent = Intent(this@Collection, Login::class.java)
                     startActivity(intent)
@@ -161,12 +170,12 @@ class Collection : ComponentActivity(){
                 Log.i("API", "收到响应，code: ${response.code}, data: ${response.data}")
 
                 if (response.code == 0) {
-                    Toast.makeText(baseContext, "删除成功", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, getString(R.string.delete_success), Toast.LENGTH_SHORT).show()
                     // 重新加载收藏列表
                     loadCollectionList()
                 } else {
                     Log.e("API", "删除收藏失败，code: ${response.code}")
-                    Toast.makeText(baseContext, response.data ?: "删除失败", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, response.data ?: getString(R.string.delete_failed), Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Log.e("API", "请求异常: ${e.message}", e)

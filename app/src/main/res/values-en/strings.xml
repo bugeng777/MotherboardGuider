@@ -43,6 +43,58 @@
     <string name="cpu_picker_title">CPU</string>
     <string name="gpu_picker_title">GPU</string>
     <string name="disk_picker_title">Disk Count</string>
+    
+    <!-- Login Screen -->
+    <string name="welcome">Welcome to</string>
+    <string name="ai_machine_cat">AI Machine Cat from ChatGPT</string>
+    <string name="enter_email">Please enter your email</string>
+    <string name="enter_password">Please enter your password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="login">Login</string>
+    <string name="no_account">No account? </string>
+    <string name="register_now">Register Now</string>
+    
+    <!-- Register Screen -->
+    <string name="login_register">Login/Register</string>
+    <string name="enter_nickname">Please enter nickname (max 16 characters)</string>
+    <string name="enter_email_for_recovery">Please enter email for password recovery</string>
+    <string name="enter_password_max_32">Please enter password (max 32 characters)</string>
+    <string name="register">Register</string>
+    <string name="have_account">Have an account? </string>
+    <string name="back_to_login">Back to Login</string>
+    
+    <!-- Forgot Password Screen -->
+    <string name="reset_password">Reset Password</string>
+    <string name="enter_verification_code">Please enter verification code from email</string>
+    <string name="get_verification_code">Get Code</string>
+    <string name="get_verification_code_countdown">Resend in %1$d seconds</string>
+    <string name="enter_new_password_max_32">Please enter new password (max 32 characters)</string>
+    <string name="confirm_new_password">Please confirm new password</string>
+    <string name="change_password">Change Password</string>
+    <string name="back_to_home">Back to Home</string>
+    
+    <!-- Collection Screen -->
+    <string name="delete_confirm_message">Are you sure you want to delete this config?</string>
+    <string name="delete_success">Deleted successfully</string>
+    <string name="delete_failed">Delete failed</string>
+    <string name="load_collection_failed">Failed to load collection list</string>
+    
+    <!-- Network and Error Messages -->
+    <string name="network_error">Network connection failed, please check network settings</string>
+    <string name="request_timeout">Request timeout, please check network connection</string>
+    <string name="cannot_connect_server">Cannot connect to server, please check network</string>
+    <string name="login_failed">Login failed, please try again later</string>
+    <string name="register_failed">Registration failed, please try again later</string>
+    <string name="change_password_failed">Password change failed, please try again later</string>
+    <string name="send_verification_code_failed">Failed to send verification code, please try again later</string>
+    
+    <!-- Validation Messages -->
+    <string name="please_enter_email">Please enter email address</string>
+    <string name="please_enter_correct_email">Please enter a valid email address</string>
+    <string name="please_enter_correct_email_short">Please enter a valid email</string>
+    <string name="please_enter_6_digit_code">Please enter 6-digit verification code</string>
+    <string name="password_length_6_32">Password length should be 6-32 characters</string>
+    <string name="passwords_not_match">Passwords do not match</string>
 </resources>
 
 

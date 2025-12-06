@@ -1,158 +1,451 @@
 [
   {
-    "id": "2",
-    "code": "2",
+    "id": "1",
+    "code": "INTEL",
     "name": "英特尔",
     "series": [
       {
         "id": "1",
-        "code": "1",
-        "name": "14代酷睿",
-        "supportedMotherboards": ["Z790","H770","B760","Z690","B660","H610","B760","Z690","B660","H610"],
+        "code": "ARROW_LAKE",
+        "name": "酷睿Ultra 200 (Arrow Lake)",
+        "supportedMotherboards": ["Z890","B860","H810"],
         "model": [
-          { "id": "1", "code": "1", "name": "Intel酷睿i9-14900K", "powerConsumption": "332.1", "releaseYear": "2023", "recommendedMotherboards": ["Z790","Z690"] },
-          { "id": "2", "code": "2", "name": "Intel酷睿i7-14700K", "powerConsumption": "282.8", "releaseYear": "2023", "recommendedMotherboards": ["Z790","B760"] },
-          { "id": "3", "code": "3", "name": "Intel酷睿i5-14600K", "powerConsumption": "190", "releaseYear": "2023", "recommendedMotherboards": ["B760","Z790"] }
+          { "id": "1", "code": "U9_285K", "name": "Ultra 9 285K", "powerConsumption": "125", "releaseYear": "2024", "recommendedMotherboards": ["Z890"] },
+          { "id": "2", "code": "U7_265K", "name": "Ultra 7 265K", "powerConsumption": "125", "releaseYear": "2024", "recommendedMotherboards": ["Z890","B860","H810"] },
+          { "id": "3", "code": "U5_245K", "name": "Ultra 5 245K", "powerConsumption": "125", "releaseYear": "2024", "recommendedMotherboards": ["Z890","B860","H810"] },
+          { "id": "4", "code": "U5_230F", "name": "Ultra 5 230F", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["Z890","B860","H810"] },
+          { "id": "5", "code": "U3_205", "name": "Ultra 3 205", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["Z890","B860","H810"] }
         ]
       },
       {
         "id": "2",
-        "code": "2",
-        "name": "13代酷睿",
-        "supportedMotherboards": ["Z790","H770","B760","Z690","B660","H610"],
+        "code": "RAPTOR_LAKE_R",
+        "name": "第14代酷睿 (Raptor Lake Refresh)",
+        "supportedMotherboards": ["Z790","H770","B760","H710","Z690","H670","B660","H610"],
         "model": [
-          { "id": "4", "code": "4", "name": "Intel酷睿i9-13900KS", "powerConsumption": "323", "releaseYear": "2022", "recommendedMotherboards": ["Z790","Z690"] },
-          { "id": "5", "code": "5", "name": "Intel酷睿i9-13900K", "powerConsumption": "292.7", "releaseYear": "2022", "recommendedMotherboards": ["Z790","Z690"] },
-          { "id": "6", "code": "6", "name": "Intel酷睿i7-13700", "powerConsumption": "238.3", "releaseYear": "2023", "recommendedMotherboards": ["B760","Z790"] },
-          { "id": "7", "code": "7", "name": "Intel酷睿i7-13790F", "powerConsumption": "234.5", "releaseYear": "2023", "recommendedMotherboards": ["B760","Z790"] },
-          { "id": "8", "code": "8", "name": "Intel酷睿i7-13700KF", "powerConsumption": "212.4", "releaseYear": "2022", "recommendedMotherboards": ["Z790","B760"] },
-          { "id": "9", "code": "9", "name": "Intel酷睿i5-13600K", "powerConsumption": "144.2", "releaseYear": "2022", "recommendedMotherboards": ["B760","Z690"] },
-          { "id": "10", "code": "10", "name": "Intel酷睿i5-13490F", "powerConsumption": "113.8", "releaseYear": "2023", "recommendedMotherboards": ["B760","B660"] },
-          { "id": "11", "code": "11", "name": "Intel酷睿i3-13400", "powerConsumption": "91", "releaseYear": "2023", "recommendedMotherboards": ["B760","B660"] }
+          { "id": "6", "code": "I9_14900KS", "name": "i9-14900KS", "powerConsumption": "150", "releaseYear": "2023", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "7", "code": "I9_14900K", "name": "i9-14900K", "powerConsumption": "125", "releaseYear": "2023", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "8", "code": "I7_14700K", "name": "i7-14700K", "powerConsumption": "125", "releaseYear": "2023", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "9", "code": "I7_14790F", "name": "i7-14790F", "powerConsumption": "65", "releaseYear": "2023", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "10", "code": "I5_14600K", "name": "i5-14600K/KF", "powerConsumption": "125", "releaseYear": "2023", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] },
+          { "id": "11", "code": "I5_14490F", "name": "i5-14490F", "powerConsumption": "65", "releaseYear": "2023", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] },
+          { "id": "12", "code": "I5_14400", "name": "i5-14400", "powerConsumption": "65", "releaseYear": "2023", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] },
+          { "id": "13", "code": "I3_14100", "name": "i3-14100", "powerConsumption": "60", "releaseYear": "2023", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] }
         ]
       },
       {
         "id": "3",
-        "code": "3",
-        "name": "12代酷睿",
-        "supportedMotherboards": ["Z790","H770","B760","Z690","B660","H610"],
+        "code": "RAPTOR_LAKE",
+        "name": "第13代酷睿 (Raptor Lake)",
+        "supportedMotherboards": ["Z790","H770","B760","H710","Z690","H670","B660","H610"],
         "model": [
-          { "id": "12", "code": "12", "name": "Intel酷睿i9-12900K", "powerConsumption": "115", "releaseYear": "2021", "recommendedMotherboards": ["Z690","B660"] },
-          { "id": "13", "code": "13", "name": "Intel酷睿i5-12600K", "powerConsumption": "113", "releaseYear": "2021", "recommendedMotherboards": ["B660","H610"] }
+          { "id": "14", "code": "I9_13900KS", "name": "i9-13900KS", "powerConsumption": "150", "releaseYear": "2022", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "15", "code": "I9_13900K", "name": "i9-13900K/KF", "powerConsumption": "125", "releaseYear": "2022", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "16", "code": "I7_13700K", "name": "i7-13700K", "powerConsumption": "125", "releaseYear": "2022", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "17", "code": "I7_13790F", "name": "i7-13790F", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["Z790","H770","Z690"] },
+          { "id": "18", "code": "I5_13600K", "name": "i5-13600K/KF", "powerConsumption": "125", "releaseYear": "2022", "recommendedMotherboards": ["H670","B660","H610"] },
+          { "id": "19", "code": "I5_13490F", "name": "i5-13490F", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] },
+          { "id": "20", "code": "I5_13400", "name": "i5-13400", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] },
+          { "id": "21", "code": "I3_13100", "name": "i3-13100", "powerConsumption": "60", "releaseYear": "2022", "recommendedMotherboards": ["B760","H710","Z690","H670","B660","H610"] }
         ]
       },
       {
         "id": "4",
-        "code": "4",
-        "name": "11代酷睿",
-        "supportedMotherboards": ["Z590","B560","H510","Z490","B460","H410"],
+        "code": "ALDER_LAKE",
+        "name": "第12代酷睿 (Alder Lake)",
+        "supportedMotherboards": ["Z790","H770","B760","H710","Z690","H670","B660","H610"],
         "model": [
-          { "id": "14", "code": "14", "name": "Intel酷睿i9-11900K", "powerConsumption": "295.86", "releaseYear": "2021", "recommendedMotherboards": ["Z590","B560"] },
-          { "id": "15", "code": "15", "name": "Intel酷睿i7-11700K", "powerConsumption": "277.1", "releaseYear": "2021", "recommendedMotherboards": ["Z590","B560"] },
-          { "id": "16", "code": "16", "name": "Intel酷睿i5-11600K", "powerConsumption": "209.56", "releaseYear": "2021", "recommendedMotherboards": ["B560","H510"] }
+          { "id": "22", "code": "I9_12900KS", "name": "i9-12900KS", "powerConsumption": "150", "releaseYear": "2021", "recommendedMotherboards": ["Z790","H770","Z690","H670"] },
+          { "id": "23", "code": "I9_12900K", "name": "i9-12900K/KF", "powerConsumption": "125", "releaseYear": "2021", "recommendedMotherboards": ["Z790","H770","Z690","H670"] },
+          { "id": "24", "code": "I7_12700K", "name": "i7-12700K/KF", "powerConsumption": "125", "releaseYear": "2021", "recommendedMotherboards": ["Z790","H770","Z690","H670"] },
+          { "id": "25", "code": "I7_12700", "name": "i7-12700/F", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["Z790","H770","Z690","H670"] },
+          { "id": "26", "code": "I5_12600K", "name": "i5-12600K/KF", "powerConsumption": "125", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] },
+          { "id": "27", "code": "I5_12600", "name": "i5-12600", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] },
+          { "id": "28", "code": "I5_12500", "name": "i5-12500", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] },
+          { "id": "29", "code": "I5_12490F", "name": "i5-12490F", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] },
+          { "id": "30", "code": "I5_12400", "name": "i5-12400", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] },
+          { "id": "31", "code": "I3_12300", "name": "i3-12300", "powerConsumption": "60", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] },
+          { "id": "32", "code": "I3_12100", "name": "i3-12100/F", "powerConsumption": "60", "releaseYear": "2021", "recommendedMotherboards": ["B760","H710","B660","H610"] }
         ]
       },
       {
         "id": "5",
-        "code": "5",
-        "name": "10代酷睿",
-        "supportedMotherboards": ["Z590","B560","H510","Z490","B460","H410"],
+        "code": "ROCKET_LAKE",
+        "name": "第11代酷睿 (Rocket Lake)",
+        "supportedMotherboards": ["Z590","H570","B560","H510","Z490","H470","B460"],
         "model": [
-          { "id": "17", "code": "17", "name": "Intel酷睿i9-10850K", "powerConsumption": "265.13", "releaseYear": "2020", "recommendedMotherboards": ["Z490","B460"] },
-          { "id": "18", "code": "18", "name": "Intel酷睿i9-10900K", "powerConsumption": "251.6", "releaseYear": "2020", "recommendedMotherboards": ["Z490","B460"] },
-          { "id": "19", "code": "19", "name": "Intel酷睿i7-10700", "powerConsumption": "214.72", "releaseYear": "2020", "recommendedMotherboards": ["B460","H410"] },
-          { "id": "20", "code": "20", "name": "Intel酷睿i7-10700K", "powerConsumption": "204.79", "releaseYear": "2020", "recommendedMotherboards": ["Z490","B460"] },
-          { "id": "21", "code": "21", "name": "Intel酷睿i5-10600K", "powerConsumption": "131.37", "releaseYear": "2020", "recommendedMotherboards": ["B460","H410"] }
+          { "id": "33", "code": "I9_11900K", "name": "i9-11900K", "powerConsumption": "125", "releaseYear": "2021", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "34", "code": "I7_11700K", "name": "i7-11700K", "powerConsumption": "125", "releaseYear": "2021", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "35", "code": "I7_11700", "name": "i7-11700", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "36", "code": "I5_11600K", "name": "i5-11600K", "powerConsumption": "125", "releaseYear": "2021", "recommendedMotherboards": ["B560","H510"] },
+          { "id": "37", "code": "I5_11400F", "name": "i5-11400F", "powerConsumption": "65", "releaseYear": "2021", "recommendedMotherboards": ["B560","H510"] }
         ]
       },
       {
         "id": "6",
-        "code": "6",
-        "name": "9代酷睿",
-        "supportedMotherboards": ["Z390","B365","H310"],
+        "code": "COMET_LAKE",
+        "name": "第十代酷睿 (Comet Lake/Cascade Lake-X)",
+        "supportedMotherboards": ["Z590","H570","B560","H510","Z490","H470","B460"],
         "model": [
-          { "id": "22", "code": "22", "name": "Intel酷睿i9-9900KS", "powerConsumption": "231.4", "releaseYear": "2019", "recommendedMotherboards": ["Z390","B365"] },
-          { "id": "23", "code": "23", "name": "Intel酷睿i9-9900K", "powerConsumption": "178.02", "releaseYear": "2018", "recommendedMotherboards": ["Z390","B365"] },
-          { "id": "24", "code": "24", "name": "Intel酷睿i7-9700K", "powerConsumption": "168.02", "releaseYear": "2018", "recommendedMotherboards": ["Z390","B365"] }
+          { "id": "38", "code": "I9_10980XE", "name": "i9-10980XE", "powerConsumption": "165", "releaseYear": "2019", "recommendedMotherboards": ["X299"] },
+          { "id": "39", "code": "I9_10940X", "name": "i9-10940X", "powerConsumption": "165", "releaseYear": "2019", "recommendedMotherboards": ["X299"] },
+          { "id": "40", "code": "I9_10920X", "name": "i9-10920X", "powerConsumption": "165", "releaseYear": "2019", "recommendedMotherboards": ["X299"] },
+          { "id": "41", "code": "I9_10900K", "name": "i9-10900K", "powerConsumption": "125", "releaseYear": "2019", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "42", "code": "I9_10850K", "name": "i9-10850K", "powerConsumption": "125", "releaseYear": "2019", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "43", "code": "I9_10900X", "name": "i9-10900X", "powerConsumption": "165", "releaseYear": "2019", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "44", "code": "I7_10700K", "name": "i7-10700K", "powerConsumption": "125", "releaseYear": "2019", "recommendedMotherboards": ["Z590","H570","Z490","H470"] },
+          { "id": "45", "code": "I5_10600K", "name": "i5-10600K", "powerConsumption": "125", "releaseYear": "2019", "recommendedMotherboards": ["B560","H510"] },
+          { "id": "46", "code": "I5_10400F", "name": "i5-10400/F", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B560","H510"] }
         ]
       },
       {
         "id": "7",
-        "code": "7",
-        "name": "8代酷睿",
-        "supportedMotherboards": ["Z390","B365","H310"],
+        "code": "COFFEE_LAKE_R",
+        "name": "第九代酷睿 (Coffee Lake Refresh/Skylake-X)",
+        "supportedMotherboards": ["Z390","H370","B365","B360","H310"],
         "model": [
-          { "id": "25", "code": "25", "name": "Intel酷睿i7-8700K", "powerConsumption": "123.6", "releaseYear": "2017", "recommendedMotherboards": ["Z390","B365"] },
-          { "id": "26", "code": "26", "name": "Intel酷睿i5-8600K", "powerConsumption": "108.16", "releaseYear": "2017", "recommendedMotherboards": ["B365","H310"] }
+          { "id": "47", "code": "I9_9980XE", "name": "i9-9980XE", "powerConsumption": "165", "releaseYear": "2018", "recommendedMotherboards": ["X299"] },
+          { "id": "48", "code": "I9_9960X", "name": "i9-9960X", "powerConsumption": "165", "releaseYear": "2018", "recommendedMotherboards": ["X299"] },
+          { "id": "49", "code": "I9_9940X", "name": "i9-9940X", "powerConsumption": "165", "releaseYear": "2018", "recommendedMotherboards": ["X299"] },
+          { "id": "50", "code": "I9_9920X", "name": "i9-9920X", "powerConsumption": "165", "releaseYear": "2018", "recommendedMotherboards": ["X299"] },
+          { "id": "51", "code": "I9_9900KS", "name": "i9-9900KS", "powerConsumption": "127", "releaseYear": "2018", "recommendedMotherboards": ["Z390"] },
+          { "id": "52", "code": "I9_9900K", "name": "i9-9900K/KF", "powerConsumption": "95", "releaseYear": "2018", "recommendedMotherboards": ["Z390", "Z370"] },
+          { "id": "53", "code": "I9_9820X", "name": "i9-9820X", "powerConsumption": "165", "releaseYear": "2018", "recommendedMotherboards": ["X299"] },
+          { "id": "54", "code": "I7_9800X", "name": "i7-9800X", "powerConsumption": "165", "releaseYear": "2018", "recommendedMotherboards": ["X299"] },
+          { "id": "55", "code": "I7_9700K", "name": "i7-9700K/KF", "powerConsumption": "95", "releaseYear": "2018", "recommendedMotherboards": ["Z390", "Z370"] },
+          { "id": "56", "code": "I5_9600K", "name": "i5-9600K/KF", "powerConsumption": "95", "releaseYear": "2018", "recommendedMotherboards": ["Z390", "Z370"] },
+          { "id": "57", "code": "I5_9500", "name": "i5-9500/F", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["H370","B365","B360","H310"] },
+          { "id": "58", "code": "I5_9400", "name": "i5-9400/F", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["H370","B365","B360","H310"] },
+          { "id": "59", "code": "I3_9350K", "name": "i3-9350K/KF", "powerConsumption": "91", "releaseYear": "2018", "recommendedMotherboards": ["Z390", "Z370"] },
+          { "id": "60", "code": "I3_9100", "name": "i3-9100/F", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["H370","B365","B360","H310"] }
         ]
       },
       {
         "id": "8",
-        "code": "8",
-        "name": "7代酷睿",
-        "supportedMotherboards": ["Z270","B250","H110"],
+        "code": "COFFEE_LAKE",
+        "name": "第八代酷睿 (Coffee Lake)",
+        "supportedMotherboards": ["Z390","Z370","H370","B360/B365","H310"],
         "model": [
-          { "id": "27", "code": "27", "name": "Intel酷睿i5-7600K", "powerConsumption": "85.18", "releaseYear": "2017", "recommendedMotherboards": ["Z270","B250"] },
-          { "id": "28", "code": "28", "name": "Intel酷睿i3-7350K", "powerConsumption": "50.51", "releaseYear": "2017", "recommendedMotherboards": ["B250","H110"] }
+          { "id": "61", "code": "I7_8086K", "name": "i7-8086K", "powerConsumption": "95", "releaseYear": "2017", "recommendedMotherboards": ["Z390","Z370"] },
+          { "id": "62", "code": "I7_8700K", "name": "i7-8700K", "powerConsumption": "95", "releaseYear": "2017", "recommendedMotherboards": ["Z390","Z370"] },
+          { "id": "63", "code": "I7_8700", "name": "i7-8700", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["H370","B360/B365"] },
+          { "id": "64", "code": "I5_8600K", "name": "i5-8600K", "powerConsumption": "95", "releaseYear": "2017", "recommendedMotherboards": ["Z390","Z370"] },
+          { "id": "65", "code": "I5_8500", "name": "i5-8500", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["H370","B360/B365","H310"] },
+          { "id": "66", "code": "I5_8400", "name": "i5-8400", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["H370","B360/B365","H310"] },
+          { "id": "67", "code": "I3_8350K", "name": "i3-8350K", "powerConsumption": "91", "releaseYear": "2017", "recommendedMotherboards": ["Z390","Z370"] },
+          { "id": "68", "code": "I3_8100", "name": "i3-8100", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["H370","B360/B365","H310"] }
         ]
       },
       {
         "id": "9",
-        "code": "9",
-        "name": "6代酷睿",
-        "supportedMotherboards": ["Z170","B150","H110"],
+        "code": "KABY_LAKE",
+        "name": "第七代酷睿 (Kaby Lake/Skylake-X)",
+        "supportedMotherboards": ["Z270","H270","B250","Z170","H170","B150","H110"],
         "model": [
-          { "id": "29", "code": "29", "name": "Intel酷睿i7-6700K", "powerConsumption": "105.32", "releaseYear": "2015", "recommendedMotherboards": ["Z170","B150"] },
-          { "id": "30", "code": "30", "name": "Intel酷睿i7-6700", "powerConsumption": "85", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
-          { "id": "31", "code": "31", "name": "Intel酷睿i5-6600K", "powerConsumption": "83.34", "releaseYear": "2015", "recommendedMotherboards": ["Z170","B150"] },
-          { "id": "32", "code": "32", "name": "Intel酷睿i5-6600", "powerConsumption": "75.76", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
-          { "id": "33", "code": "33", "name": "Intel酷睿i5-6500", "powerConsumption": "64.39", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
-          { "id": "34", "code": "34", "name": "Intel酷睿i3-6300", "powerConsumption": "51.43", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] },
-          { "id": "35", "code": "35", "name": "Intel酷睿i3-6100", "powerConsumption": "46.18", "releaseYear": "2015", "recommendedMotherboards": ["B150","H110"] }
+          { "id": "69", "code": "I9_7980XE", "name": "i9-7980XE", "powerConsumption": "165", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "70", "code": "I9_7960X", "name": "i9-7960X", "powerConsumption": "165", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "71", "code": "I9_7940X", "name": "i9-7940X", "powerConsumption": "165", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "72", "code": "I9_7920X", "name": "i9-7920X", "powerConsumption": "140", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "73", "code": "I9_7900X", "name": "i9-7900X", "powerConsumption": "140", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "74", "code": "I7_7820X", "name": "i7-7820X", "powerConsumption": "140", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "75", "code": "I7_7740X", "name": "i7-7740X", "powerConsumption": "112", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "76", "code": "I7_7700K", "name": "i7-7700K", "powerConsumption": "91", "releaseYear": "2016", "recommendedMotherboards": ["Z270","Z170"] },
+          { "id": "77", "code": "I7_7700", "name": "i7-7700", "powerConsumption": "65", "releaseYear": "2016", "recommendedMotherboards": ["H270","B250","H170","B150"] },
+          { "id": "78", "code": "I5_7640X", "name": "i5-7640X", "powerConsumption": "112", "releaseYear": "2016", "recommendedMotherboards": ["X299"] },
+          { "id": "79", "code": "I5_7600K", "name": "i5-7600K", "powerConsumption": "91", "releaseYear": "2016", "recommendedMotherboards": ["Z270","Z170"] },
+          { "id": "80", "code": "I5_7500", "name": "i5-7500", "powerConsumption": "65", "releaseYear": "2016", "recommendedMotherboards": ["H270","B250","H170","B150"] },
+          { "id": "81", "code": "I3_7350K", "name": "i3-7350K", "powerConsumption": "60", "releaseYear": "2016", "recommendedMotherboards": ["Z270","Z170"] },
+          { "id": "82", "code": "I3_7100", "name": "i3-7100", "powerConsumption": "51", "releaseYear": "2016", "recommendedMotherboards": ["H270","B250","H170","B150","H110"] }
         ]
       },
       {
         "id": "10",
-        "code": "10",
-        "name": "4代酷睿",
-        "supportedMotherboards": ["Z97","H97","B85"],
+        "code": "SKYLAKE",
+        "name": "第六代酷睿 (Skylake)",
+        "supportedMotherboards": ["Z270","H270","B250","Z170","H170","B150","H110"],
         "model": [
-          { "id": "36", "code": "36", "name": "Intel酷睿i7-4790K", "powerConsumption": "129.88", "releaseYear": "2014", "recommendedMotherboards": ["Z97","H97"] },
-          { "id": "37", "code": "37", "name": "Intel酷睿i5-4690", "powerConsumption": "95.8", "releaseYear": "2014", "recommendedMotherboards": ["H97","B85"] },
-          { "id": "38", "code": "38", "name": "Intel酷睿i5-4690K", "powerConsumption": "94", "releaseYear": "2014", "recommendedMotherboards": ["Z97","B85"] },
-          { "id": "39", "code": "39", "name": "Intel酷睿i3-4360", "powerConsumption": "59.36", "releaseYear": "2014", "recommendedMotherboards": ["B85","H97"] }
+          { "id": "83", "code": "I7_6950X", "name": "i7-6950X (Broadwell-E归类于此期HEDT)", "powerConsumption": "140", "releaseYear": "2015", "recommendedMotherboards": ["X99"] },
+          { "id": "84", "code": "I7_6900K", "name": "i7-6900K", "powerConsumption": "140", "releaseYear": "2015", "recommendedMotherboards": ["X99"] },
+          { "id": "85", "code": "I7_6850K", "name": "i7-6850K", "powerConsumption": "140", "releaseYear": "2015", "recommendedMotherboards": ["X99"] },
+          { "id": "86", "code": "I7_6800K", "name": "i7-6800K", "powerConsumption": "140", "releaseYear": "2015", "recommendedMotherboards": ["X99"] },
+          { "id": "87", "code": "I7_6700K", "name": "i7-6700K", "powerConsumption": "91", "releaseYear": "2015", "recommendedMotherboards": ["Z170","Z270"] },
+          { "id": "88", "code": "I5_6600K", "name": "i5-6600K", "powerConsumption": "91", "releaseYear": "2015", "recommendedMotherboards": ["Z170","Z270"] },
+          { "id": "89", "code": "I5_6500", "name": "i5-6500", "powerConsumption": "65", "releaseYear": "2015", "recommendedMotherboards": ["B150","H170","B250","H270","H110"] },
+          { "id": "90", "code": "I3_6320", "name": "i3-6320", "powerConsumption": "51", "releaseYear": "2015", "recommendedMotherboards": ["B150","H170","B250","H270","H110"] },
+          { "id": "91", "code": "I3_6100", "name": "i3-6100", "powerConsumption": "51", "releaseYear": "2015", "recommendedMotherboards": ["B150","H170","B250","H270","H110"] }
+        ]
+      },
+      {
+        "id": "11",
+        "code": "BROADWELL",
+        "name": "第五代酷睿 (Broadwell)",
+        "supportedMotherboards": ["Z97","H97","H87", "B85", "H81"],
+        "model": [
+          { "id": "92", "code": "I7_5775C", "name": "i7-5775C", "powerConsumption": "65", "releaseYear": "2014", "recommendedMotherboards": ["Z97","H97"] },
+          { "id": "93", "code": "I5_5675C", "name": "i5-5675C", "powerConsumption": "65", "releaseYear": "2014", "recommendedMotherboards": ["Z97","H97"] }
+        ]
+      },
+      {
+        "id": "12",
+        "code": "HASWELL",
+        "name": "第四代酷睿 (Haswell)",
+        "supportedMotherboards": ["Z97","H97","Z87", "H87", "B85", "H81"],
+        "model": [
+          { "id": "94", "code": "I7_5960X", "name": "i7-5960X (Haswell-E)", "powerConsumption": "140", "releaseYear": "2013", "recommendedMotherboards": ["X99"] },
+          { "id": "95", "code": "I7_5930K", "name": "i7-5930K", "powerConsumption": "140", "releaseYear": "2013", "recommendedMotherboards": ["X99"] },
+          { "id": "96", "code": "I7_5820K", "name": "i7-5820K", "powerConsumption": "140", "releaseYear": "2013", "recommendedMotherboards": ["X99"] },
+          { "id": "97", "code": "I7_4960X", "name": "i7-4960X (Ivy Bridge-E)", "powerConsumption": "130", "releaseYear": "2013", "recommendedMotherboards": ["X79"] },
+          { "id": "98", "code": "I7_4930K", "name": "i7-4930K", "powerConsumption": "130", "releaseYear": "2013", "recommendedMotherboards": ["X79"] },
+          { "id": "99", "code": "I7_4820K", "name": "i7-4820K", "powerConsumption": "130", "releaseYear": "2013", "recommendedMotherboards": ["X79"] },
+          { "id": "100", "code": "I7_4790K", "name": "i7-4790K", "powerConsumption": "88", "releaseYear": "2013", "recommendedMotherboards": ["Z97","Z87"] },
+          { "id": "101", "code": "I7_4770K", "name": "i7-4770K", "powerConsumption": "84", "releaseYear": "2013", "recommendedMotherboards": ["Z97","Z87"] },
+          { "id": "102", "code": "I5_4690K", "name": "i5-4690K", "powerConsumption": "88", "releaseYear": "2013", "recommendedMotherboards": ["Z97","Z87"] },
+          { "id": "103", "code": "I5_4670K", "name": "i5-4670K", "powerConsumption": "84", "releaseYear": "2013", "recommendedMotherboards": ["Z97","Z87"] },
+          { "id": "104", "code": "I3_4330", "name": "i3-4330", "powerConsumption": "54", "releaseYear": "2013", "recommendedMotherboards": ["H97","H87", "B85", "H81"] },
+          { "id": "105", "code": "I3_4130", "name": "i3-4130", "powerConsumption": "54", "releaseYear": "2013", "recommendedMotherboards": ["H97","H87", "B85", "H81"] }
+        ]
+      },
+      {
+        "id": "13",
+        "code": "IVY_BRIDGE",
+        "name": "第三代酷睿 (Ivy Bridge)",
+        "supportedMotherboards": ["Z77","H77","B75","Z68","P67","H67","B65","H61"],
+        "model": [
+          { "id": "106", "code": "I7_3770K", "name": "i7-3770K", "powerConsumption": "77", "releaseYear": "2012", "recommendedMotherboards": ["Z77","Z68"]},
+          { "id": "107", "code": "I7_3770", "name": "i7-3770", "powerConsumption": "77", "releaseYear": "2012", "recommendedMotherboards": ["H77","B75","H67"] },
+          { "id": "108", "code": "I5_3570K", "name": "i5-3570K", "powerConsumption": "77", "releaseYear": "2012", "recommendedMotherboards": ["Z77","Z68"] },
+          { "id": "109", "code": "I5_3470", "name": "i5-3470", "powerConsumption": "77", "releaseYear": "2012", "recommendedMotherboards": ["H77","B75","H67","B65","H61"] },
+          { "id": "110", "code": "I3_3225", "name": "i3-3225", "powerConsumption": "55", "releaseYear": "2012", "recommendedMotherboards": ["H77","B75","H67","B65","H61"] }
+        ]
+      },
+      {
+        "id": "14",
+        "code": "SANDY_BRIDGE",
+        "name": "第二代酷睿 (Sandy Bridge)",
+        "supportedMotherboards": ["Z77","H77","B75","Z68","P67","H67","B65","H61"],
+        "model": [
+          { "id": "111", "code": "I7_3960X", "name": "i7-3960X (SNB-E)", "powerConsumption": "130", "releaseYear": "2011", "recommendedMotherboards": ["X79"] },
+          { "id": "112", "code": "I7_3930K", "name": "i7-3930X (SNB-E)", "powerConsumption": "130", "releaseYear": "2011", "recommendedMotherboards": ["X79"] },
+          { "id": "113", "code": "I7_3820", "name": "i7-3820", "powerConsumption": "130", "releaseYear": "2011", "recommendedMotherboards": ["X79"] },
+          { "id": "114", "code": "I7_2700K", "name": "i7-2700K", "powerConsumption": "95", "releaseYear": "2011", "recommendedMotherboards": ["Z77","Z68","P67"] },
+          { "id": "115", "code": "I7_2600K", "name": "i7-2600K", "powerConsumption": "95", "releaseYear": "2011", "recommendedMotherboards": ["Z77","Z68","P67"] },
+          { "id": "116", "code": "I5_2500K", "name": "i5-2500K", "powerConsumption": "95", "releaseYear": "2011", "recommendedMotherboards": ["Z77","Z68","P67"] },
+          { "id": "117", "code": "I5_2400", "name": "i5-2400", "powerConsumption": "95", "releaseYear": "2011", "recommendedMotherboards": ["H77","B75","H67","B65","H61"] },
+          { "id": "118", "code": "I3_2130", "name": "i3-2130", "powerConsumption": "65", "releaseYear": "2011", "recommendedMotherboards": ["H77","B75","H67","B65","H61"] },
+          { "id": "119", "code": "I3_2100", "name": "i3-2100", "powerConsumption": "65", "releaseYear": "2011", "recommendedMotherboards": ["H77","B75","H67","B65","H61"] }
+        ]
+      },
+      {
+        "id": "15",
+        "code": "NEHALEM",
+        "name": "第一代酷睿 (Nehalem/Westmere)",
+        "supportedMotherboards": ["X58", "P55", "H57", "H55"],
+        "model": [
+          { "id": "120", "code": "I7_990X", "name": "i7-990X", "powerConsumption": "130", "releaseYear": "2008", "recommendedMotherboards": ["X58"] },
+          { "id": "121", "code": "I7_980X", "name": "i7-980X", "powerConsumption": "130", "releaseYear": "2008", "recommendedMotherboards": ["X58"] },
+          { "id": "122", "code": "I7_970", "name": "i7-970", "powerConsumption": "130", "releaseYear": "2008", "recommendedMotherboards": ["X58"] },
+          { "id": "123", "code": "I7_960", "name": "i7-960", "powerConsumption": "130", "releaseYear": "2008", "recommendedMotherboards": ["X58"] },
+          { "id": "124", "code": "I7_920", "name": "i7-920", "powerConsumption": "130", "releaseYear": "2008", "recommendedMotherboards": ["X58"] },
+          { "id": "125", "code": "I7_870", "name": "i7-870", "powerConsumption": "95", "releaseYear": "2008", "recommendedMotherboards": ["P55","H57","H55"] },
+          { "id": "126", "code": "I5_760", "name": "i5-760", "powerConsumption": "95", "releaseYear": "2008", "recommendedMotherboards": ["P55","H57","H55"] },
+          { "id": "127", "code": "I5_750", "name": "i5-750", "powerConsumption": "95", "releaseYear": "2008", "recommendedMotherboards": ["P55","H57","H55"] },
+          { "id": "128", "code": "I5_680", "name": "i5-680", "powerConsumption": "73", "releaseYear": "2008", "recommendedMotherboards": ["P55","H57","H55"] },
+          { "id": "129", "code": "I3_530", "name": "i3-530", "powerConsumption": "73", "releaseYear": "2008", "recommendedMotherboards": ["P55","H57", "H55"] }
         ]
       }
     ]
   },
   {
     "id": "2",
-    "code": "2",
+    "code": "AMD",
     "name": "超威半导体",
     "series": [
       {
         "id": "1",
-        "code": "1",
-        "name": "9000系列",
-        "supportedMotherboards": ["X870E","X870","X670E","X670","B850","B650E","B650"],
+        "code": "ZEN_5",
+        "name": "锐龙9000系列 (Zen 5)",
+        "supportedMotherboards": [ "X670", "X670E", "B650", "B650E", "A620" ],
         "model": [
-          { "id": "1", "code": "1", "name": "AMD锐龙9 9950X3D", "powerConsumption": "245.3", "releaseYear": "2025", "recommendedMotherboards": ["X870E","X870","B850"] },
-          { "id": "2", "code": "2", "name": "AMD锐龙9 9900X", "powerConsumption": "193.1", "releaseYear": "2024", "recommendedMotherboards": ["X870E","B850","B650E"] },
-          { "id": "3", "code": "3", "name": "AMD锐龙9 9950X", "powerConsumption": "182.6", "releaseYear": "2024", "recommendedMotherboards": ["X870E","B850","B650E"] },
-          { "id": "4", "code": "4", "name": "AMD锐龙7 9700X", "powerConsumption": "144.1", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] },
-          { "id": "5", "code": "5", "name": "AMD锐龙7 9800X3D", "powerConsumption": "135.8", "releaseYear": "2024", "recommendedMotherboards": ["X870E","B850","B650E"] },
-          { "id": "6", "code": "6", "name": "AMD锐龙5 9600X", "powerConsumption": "124.7", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] }
+          { "id": "130", "code": "TR_9980X", "name": "线程撕裂者9980X", "powerConsumption": "350", "releaseYear": "2024", "recommendedMotherboards": ["WRX90", "TRX50"] },
+          { "id": "131", "code": "TR_9970X", "name": "线程撕裂者9970X", "powerConsumption": "350", "releaseYear": "2024", "recommendedMotherboards": ["WRX90", "TRX50"] },
+          { "id": "132", "code": "R9_9950X3D", "name": "锐龙9 9950X3D", "powerConsumption": "120", "releaseYear": "2024", "recommendedMotherboards": ["X670E", "X670", "B650E"] },
+          { "id": "133", "code": "R9_9950X", "name": "锐龙9 9950X", "powerConsumption": "170", "releaseYear": "2024", "recommendedMotherboards": ["X670E", "X670"] },
+          { "id": "134", "code": "R9_9900X", "name": "锐龙9 9900X", "powerConsumption": "120", "releaseYear": "2024", "recommendedMotherboards": ["X670E", "X670", "B650E"] },
+          { "id": "135", "code": "R7_9800X3D", "name": "锐龙7 9800X3D", "powerConsumption": "120", "releaseYear": "2024", "recommendedMotherboards": ["X670E", "X670", "B650E"] },
+          { "id": "136", "code": "R7_9700X", "name": "锐龙7 9700X", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["B650E", "B650"] },
+          { "id": "137", "code": "R5_9600X", "name": "锐龙5 9600X", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["B650E", "B650"] },
+          { "id": "138", "code": "R5_9500F", "name": "锐龙5 9500F", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["A620", "B650"] }
         ]
       },
       {
         "id": "2",
-        "code": "2",
-        "name": "8000系列",
-        "supportedMotherboards": ["X870E","X870","X670E","X670","B850","B650E","B650"],
+        "code": "ZEN_4_APU",
+        "name": "锐龙8000G系列 (Zen 4)",
+        "supportedMotherboards": [ "X670", "X670E", "B650", "B650E", "A620" ],
         "model": [
-          { "id": "7", "code": "7", "name": "AMD锐龙7 8700F", "powerConsumption": "88", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] },
-          { "id": "8", "code": "8", "name": "AMD锐龙7 8700G", "powerConsumption": "87.8", "releaseYear": "2024", "recommendedMotherboards": ["B850","B650E","B650"] },
-          { "id": "9", "code": "9", "name": "AMD锐龙5 8600G", "powerConsumption": "69.3", "releaseYear": "2024", "recommendedMotherboards": ["B650E","B650"] }
+          { "id": "139", "code": "R7_8700G", "name": "锐龙7 8700G/8700F", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["B650", "A620"] },
+          { "id": "140", "code": "R5_8500G", "name": "锐龙5 8500G", "powerConsumption": "65", "releaseYear": "2024", "recommendedMotherboards": ["B650", "A620"] }
+        ]
+      },
+      {
+        "id": "3",
+        "code": "ZEN_4",
+        "name": "锐龙7000系列 (Zen 4)",
+        "supportedMotherboards": [ "X670", "X670E", "B650", "B650E", "A620" ],
+        "model": [
+          { "id": "141", "code": "TR_7980X", "name": "线程撕裂者7980X", "powerConsumption": "350", "releaseYear": "2022", "recommendedMotherboards": ["WRX90", "TRX50"] },
+          { "id": "142", "code": "TR_7970X", "name": "线程撕裂者7970X", "powerConsumption": "350", "releaseYear": "2022", "recommendedMotherboards": ["WRX90", "TRX50"] },
+          { "id": "143", "code": "TR_7960X", "name": "线程撕裂者7960X", "powerConsumption": "350", "releaseYear": "2022", "recommendedMotherboards": ["WRX90", "TRX50"] },
+          { "id": "144", "code": "R9_7950X", "name": "锐龙9 7950X", "powerConsumption": "170", "releaseYear": "2022", "recommendedMotherboards": ["X670E", "X670"] },
+          { "id": "145", "code": "R9_7900X", "name": "锐龙9 7900X", "powerConsumption": "170", "releaseYear": "2022", "recommendedMotherboards": ["X670E", "X670"] },
+          { "id": "146", "code": "R9_7900", "name": "锐龙9 7900", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["B650E", "B650"] },
+          { "id": "147", "code": "R7_7800X3D", "name": "锐龙7 7800X3D", "powerConsumption": "120", "releaseYear": "2022", "recommendedMotherboards": ["X670E", "X670", "B650E"] },
+          { "id": "148", "code": "R7_7700X", "name": "锐龙7 7700X", "powerConsumption": "105", "releaseYear": "2022", "recommendedMotherboards": ["B650E", "B650"] },
+          { "id": "149", "code": "R7_7700", "name": "锐龙7 7700", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["B650", "A620"] },
+          { "id": "150", "code": "R5_7600X", "name": "锐龙5 7600X", "powerConsumption": "105", "releaseYear": "2022", "recommendedMotherboards": ["B650", "A620"] },
+          { "id": "151", "code": "R5_7600", "name": "锐龙5 7600", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["B650", "A620"] },
+          { "id": "152", "code": "R5_7500F", "name": "锐龙5 7500F", "powerConsumption": "65", "releaseYear": "2022", "recommendedMotherboards": ["A620", "B650"] }
+        ]
+      },
+      {
+        "id": "4",
+        "code": "ZEN_3",
+        "name": "锐龙5000系列 (Zen 3)",
+        "supportedMotherboards": [ "X570", "B550", "A520", "X470", "B450" ],
+        "model": [
+          { "id": "153", "code": "R9_5950X", "name": "锐龙9 5950X", "powerConsumption": "105", "releaseYear": "2020", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "154", "code": "R9_5900X", "name": "锐龙9 5900X", "powerConsumption": "105", "releaseYear": "2020", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "155", "code": "R7_5800X3D", "name": "锐龙7 5800X3D", "powerConsumption": "105", "releaseYear": "2020", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "156", "code": "R7_5800X", "name": "锐龙7 5800X", "powerConsumption": "105", "releaseYear": "2020", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "157", "code": "R7_5700X", "name": "锐龙7 5700X", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] },
+          { "id": "158", "code": "R7_5700G", "name": "锐龙7 5700G", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] },
+          { "id": "159", "code": "R5_5600X", "name": "锐龙5 5600X", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] },
+          { "id": "160", "code": "R5_5600G", "name": "锐龙5 5600G", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] },
+          { "id": "161", "code": "R5_5600", "name": "锐龙5 5600", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] },
+          { "id": "162", "code": "R5_5500", "name": "锐龙5 5500", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] },
+          { "id": "163", "code": "R3_5300G", "name": "锐龙3 5300G", "powerConsumption": "65", "releaseYear": "2020", "recommendedMotherboards": ["B550", "A520"] }
+        ]
+      },
+      {
+        "id": "5",
+        "code": "ZEN_2",
+        "name": "锐龙3000系列 (Zen 2)",
+        "supportedMotherboards": [ "X570", "B550", "A520", "X470", "B450", "X370", "B350", "A320" ],
+        "model": [
+          { "id": "164", "code": "TR_3990X", "name": "线程撕裂者3990X", "powerConsumption": "280", "releaseYear": "2019", "recommendedMotherboards": ["TRX40"] },
+          { "id": "165", "code": "TR_3970X", "name": "线程撕裂者3970X", "powerConsumption": "280", "releaseYear": "2019", "recommendedMotherboards": ["TRX40"] },
+          { "id": "166", "code": "TR_3960X", "name": "线程撕裂者3960X", "powerConsumption": "280", "releaseYear": "2019", "recommendedMotherboards": ["TRX40"] },
+          { "id": "167", "code": "R9_3950X", "name": "锐龙9 3950X", "powerConsumption": "105", "releaseYear": "2019", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "168", "code": "R9_3900XT", "name": "锐龙9 3900XT", "powerConsumption": "105", "releaseYear": "2019", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "169", "code": "R9_3900X", "name": "锐龙9 3900X", "powerConsumption": "105", "releaseYear": "2019", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "170", "code": "R7_3800XT", "name": "锐龙7 3800XT", "powerConsumption": "105", "releaseYear": "2019", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "171", "code": "R7_3800X", "name": "锐龙7 3800X", "powerConsumption": "105", "releaseYear": "2019", "recommendedMotherboards": ["X570", "B550"] },
+          { "id": "172", "code": "R7_3700X", "name": "锐龙7 3700X", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B550", "X470", "B450"] },
+          { "id": "173", "code": "R5_3600XT", "name": "锐龙5 3600XT", "powerConsumption": "95", "releaseYear": "2019", "recommendedMotherboards": ["B550", "B450"] },
+          { "id": "174", "code": "R5_3600X", "name": "锐龙5 3600X", "powerConsumption": "95", "releaseYear": "2019", "recommendedMotherboards": ["B550", "B450"] },
+          { "id": "175", "code": "R5_3600", "name": "锐龙5 3600", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B450", "A520", "B550"] },
+          { "id": "176", "code": "R5_3500X", "name": "锐龙5 3500X", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B450", "A520", "B550"] },
+          { "id": "177", "code": "R5_3400G", "name": "锐龙5 3400G", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B450", "A320"] },
+          { "id": "178", "code": "R3_3300X", "name": "锐龙3 3300X", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B450", "A520", "B550"] },
+          { "id": "179", "code": "R3_3200G", "name": "锐龙3 3200G", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B450", "A320"] },
+          { "id": "180", "code": "R3_3100", "name": "锐龙3 3100", "powerConsumption": "65", "releaseYear": "2019", "recommendedMotherboards": ["B450", "A520", "B550"] }
+        ]
+      },
+      {
+        "id": "6",
+        "code": "ZEN_PLUS",
+        "name": "锐龙2000系列 (Zen+)",
+        "supportedMotherboards": [ "X470", "B450", "X370", "B350", "A320" ],
+        "model": [
+          { "id": "181", "code": "TR_2990WX", "name": "线程撕裂者2990WX", "powerConsumption": "250", "releaseYear": "2018", "recommendedMotherboards": ["X399"] },
+          { "id": "182", "code": "TR_2970WX", "name": "线程撕裂者2970WX", "powerConsumption": "250", "releaseYear": "2018", "recommendedMotherboards": ["X399"] },
+          { "id": "183", "code": "TR_2950X", "name": "线程撕裂者2950X", "powerConsumption": "180", "releaseYear": "2018", "recommendedMotherboards": ["X399"] },
+          { "id": "184", "code": "TR_2920X", "name": "线程撕裂者2920X", "powerConsumption": "180", "releaseYear": "2018", "recommendedMotherboards": ["X399"] },
+          { "id": "185", "code": "R7_2700X", "name": "锐龙7 2700X", "powerConsumption": "105", "releaseYear": "2018", "recommendedMotherboards": ["X470", "B450"] },
+          { "id": "186", "code": "R7_2700", "name": "锐龙7 2700", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["B450", "B350"] },
+          { "id": "187", "code": "R5_2600X", "name": "锐龙5 2600X", "powerConsumption": "95", "releaseYear": "2018", "recommendedMotherboards": ["B450", "B350"] },
+          { "id": "188", "code": "R5_2600", "name": "锐龙5 2600", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["B450", "A320"] },
+          { "id": "189", "code": "R5_2500X", "name": "锐龙5 2500X", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["B450", "A320"] },
+          { "id": "190", "code": "R5_2400G", "name": "锐龙5 2400G", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["B450", "A320"] },
+          { "id": "191", "code": "R3_2300X", "name": "锐龙3 2300X", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["B450", "A320"] },
+          { "id": "192", "code": "R3_2200G", "name": "锐龙3 2200G", "powerConsumption": "65", "releaseYear": "2018", "recommendedMotherboards": ["B450", "A320"] }
+        ]
+      },
+      {
+        "id": "7",
+        "code": "ZEN",
+        "name": "锐龙1000系列 (Zen)",
+        "supportedMotherboards": [ "X370", "B350", "A320", "X470", "B450" ],
+        "model": [
+          { "id": "193", "code": "TR_1950X", "name": "线程撕裂者1950X", "powerConsumption": "180", "releaseYear": "2017", "recommendedMotherboards": ["X399"] },
+          { "id": "194", "code": "TR_1920X", "name": "线程撕裂者1920X", "powerConsumption": "180", "releaseYear": "2017", "recommendedMotherboards": ["X399"] },
+          { "id": "195", "code": "TR_1900X", "name": "线程撕裂者1900X", "powerConsumption": "180", "releaseYear": "2017", "recommendedMotherboards": ["X399"] },
+          { "id": "196", "code": "R7_1800X", "name": "锐龙7 1800X", "powerConsumption": "95", "releaseYear": "2017", "recommendedMotherboards": ["X370", "B350"] },
+          { "id": "197", "code": "R7_1700X", "name": "锐龙7 1700X", "powerConsumption": "95", "releaseYear": "2017", "recommendedMotherboards": ["X370", "B350"] },
+          { "id": "198", "code": "R7_1700", "name": "锐龙7 1700", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] },
+          { "id": "199", "code": "R5_1600X", "name": "锐龙5 1600X", "powerConsumption": "95", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] },
+          { "id": "200", "code": "R5_1600", "name": "锐龙5 1600", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] },
+          { "id": "201", "code": "R5_1500X", "name": "锐龙5 1500X", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] },
+          { "id": "202", "code": "R5_1400", "name": "锐龙5 1400", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] },
+          { "id": "203", "code": "R3_1300X", "name": "锐龙3 1300X", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] },
+          { "id": "204", "code": "R3_1200", "name": "锐龙3 1200", "powerConsumption": "65", "releaseYear": "2017", "recommendedMotherboards": ["B350", "A320"] }
+        ]
+      },
+      {
+        "id": "8",
+        "code": "FX_SERIES",
+        "name": "FX系列 (Piledriver/Bulldozer)",
+        "supportedMotherboards": [ "990FX", "990X", "970" ],
+        "model": [
+          { "id": "205", "code": "FX_9590", "name": "FX-9590", "powerConsumption": "220", "releaseYear": "2012", "recommendedMotherboards": ["990FX"] },
+          { "id": "206", "code": "FX_9370", "name": "FX-9370", "powerConsumption": "220", "releaseYear": "2012", "recommendedMotherboards": ["990FX"] },
+          { "id": "207", "code": "FX_8350", "name": "FX-8350", "powerConsumption": "125", "releaseYear": "2012", "recommendedMotherboards": ["990FX", "990X", "970"] },
+          { "id": "208", "code": "FX_8320", "name": "FX-8320", "powerConsumption": "125", "releaseYear": "2012", "recommendedMotherboards": ["990FX", "990X", "970"] },
+          { "id": "209", "code": "FX_8300", "name": "FX-8300", "powerConsumption": "95", "releaseYear": "2012", "recommendedMotherboards": ["970"] },
+          { "id": "210", "code": "FX_8170", "name": "FX-8170", "powerConsumption": "125", "releaseYear": "2011", "recommendedMotherboards": ["990FX", "990X", "970"] },
+          { "id": "211", "code": "FX_8150", "name": "FX-8150", "powerConsumption": "125", "releaseYear": "2011", "recommendedMotherboards": ["990FX", "990X", "970"] },
+          { "id": "212", "code": "FX_6300", "name": "FX-6300", "powerConsumption": "95", "releaseYear": "2012", "recommendedMotherboards": ["970"] },
+          { "id": "213", "code": "FX_6200", "name": "FX-6200", "powerConsumption": "125", "releaseYear": "2012", "recommendedMotherboards": ["970"] },
+          { "id": "214", "code": "FX_6100", "name": "FX-6100", "powerConsumption": "95", "releaseYear": "2011", "recommendedMotherboards": ["970"] },
+          { "id": "215", "code": "FX_4320", "name": "FX-4320", "powerConsumption": "95", "releaseYear": "2012", "recommendedMotherboards": ["970"] },
+          { "id": "216", "code": "FX_4170", "name": "FX-4170", "powerConsumption": "125", "releaseYear": "2011", "recommendedMotherboards": ["970"] },
+          { "id": "217", "code": "FX_4100", "name": "FX-4100", "powerConsumption": "95", "releaseYear": "2011", "recommendedMotherboards": ["970"] }
+        ]
+      },
+      {
+        "id": "9",
+        "code": "LEGACY_APU",
+        "name": "旧APU (A系列/Godavari/Richland/Trinity/Llano)",
+        "supportedMotherboards": [ "A88X", "A78", "A68H", "A58", "A55" ],
+        "model": [
+          { "id": "218", "code": "A12_9800", "name": "A12-9800", "powerConsumption": "65", "releaseYear": "2015", "recommendedMotherboards": ["A320"] },
+          { "id": "219", "code": "A10_9700", "name": "A10-9700", "powerConsumption": "65", "releaseYear": "2015", "recommendedMotherboards": ["A320"] },
+          { "id": "220", "code": "A10_7890K", "name": "A10-7890K", "powerConsumption": "95", "releaseYear": "2015", "recommendedMotherboards": ["A88X", "A78", "A68H"] },
+          { "id": "221", "code": "A10_7870K", "name": "A10-7870K", "powerConsumption": "95", "releaseYear": "2015", "recommendedMotherboards": ["A88X", "A78", "A68H"] },
+          { "id": "222", "code": "A10_7850K", "name": "A10-7850K", "powerConsumption": "95", "releaseYear": "2014", "recommendedMotherboards": ["A88X", "A78", "A68H"] },
+          { "id": "223", "code": "A10_6800K", "name": "A10-6800K", "powerConsumption": "100", "releaseYear": "2013", "recommendedMotherboards": ["A85X", "A75"] },
+          { "id": "224", "code": "A10_5800K", "name": "A10-5800K", "powerConsumption": "100", "releaseYear": "2012", "recommendedMotherboards": ["A85X", "A75"] },
+          { "id": "225", "code": "A8_7670K", "name": "A8-7670K", "powerConsumption": "95", "releaseYear": "2015", "recommendedMotherboards": ["A88X", "A78", "A68H"] },
+          { "id": "226", "code": "A8_3870K", "name": "A8-3870K", "powerConsumption": "100", "releaseYear": "2011", "recommendedMotherboards": ["A75"] }
+        ]
+      },
+      {
+        "id": "10",
+        "code": "K10",
+        "name": "K10/K8 (弈龙/速龙)",
+        "supportedMotherboards": [ "790FX", "770", "890FX", "870" ],
+        "model": [
+          { "id": "227", "code": "X6_1100T", "name": "弈龙2 X6 1100T", "powerConsumption": "125", "releaseYear": "2007", "recommendedMotherboards": ["890FX", "790FX"] },
+          { "id": "228", "code": "X6_1090T", "name": "弈龙2 X6 1090T", "powerConsumption": "125", "releaseYear": "2007", "recommendedMotherboards": ["890FX", "790FX"] },
+          { "id": "229", "code": "X4_980", "name": "弈龙2 X4 980", "powerConsumption": "125", "releaseYear": "2007", "recommendedMotherboards": ["890FX", "790FX"] },
+          { "id": "230", "code": "X4_975", "name": "弈龙2 X4 975", "powerConsumption": "125", "releaseYear": "2007", "recommendedMotherboards": ["890FX", "790FX"] },
+          { "id": "231", "code": "X4_965", "name": "弈龙2 X4 965", "powerConsumption": "125", "releaseYear": "2007", "recommendedMotherboards": ["870", "770"] },
+          { "id": "232", "code": "X4_955", "name": "弈龙2 X4 955", "powerConsumption": "95", "releaseYear": "2007", "recommendedMotherboards": ["870", "770"] },
+          { "id": "233", "code": "X4_880K", "name": "速龙X4 880K", "powerConsumption": "95", "releaseYear": "2007", "recommendedMotherboards": ["A88X", "A78"] },
+          { "id": "234", "code": "X4_870K", "name": "速龙X4 870K", "powerConsumption": "95", "releaseYear": "2007", "recommendedMotherboards": ["A88X", "A78"] },
+          { "id": "235", "code": "X4_860K", "name": "速龙X4 860K", "powerConsumption": "95", "releaseYear": "2007", "recommendedMotherboards": ["A88X", "A78"] },
+          { "id": "236", "code": "X4_760K", "name": "速龙X4 760K", "powerConsumption": "100", "releaseYear": "2007", "recommendedMotherboards": ["A85X", "A75"] },
+          { "id": "237", "code": "X4_651K", "name": "速龙X4 651K", "powerConsumption": "100", "releaseYear": "2007", "recommendedMotherboards": ["A75"] }
         ]
       }
     ]

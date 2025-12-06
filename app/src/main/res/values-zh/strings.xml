@@ -43,6 +43,58 @@
     <string name="cpu_picker_title">CPU</string>
     <string name="gpu_picker_title">GPU</string>
     <string name="disk_picker_title">硬盘数量</string>
+    
+    <!-- 登录页面 -->
+    <string name="welcome">欢迎来到</string>
+    <string name="ai_machine_cat">来自ChatGPT的人工智能机器喵</string>
+    <string name="enter_email">请输入您的邮箱</string>
+    <string name="enter_password">请输入您的密码</string>
+    <string name="forgot_password">找回密码</string>
+    <string name="login">登录</string>
+    <string name="no_account">没有账号? </string>
+    <string name="register_now">立即注册</string>
+    
+    <!-- 注册页面 -->
+    <string name="login_register">登录/注册</string>
+    <string name="enter_nickname">请输入16字以内的昵称</string>
+    <string name="enter_email_for_recovery">请输入正确的邮箱用于找回密码</string>
+    <string name="enter_password_max_32">请输入最长32位密码</string>
+    <string name="register">注册</string>
+    <string name="have_account">已有账号? </string>
+    <string name="back_to_login">返回登录</string>
+    
+    <!-- 忘记密码页面 -->
+    <string name="reset_password">找回密码</string>
+    <string name="enter_verification_code">请输入邮箱收到的验证码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="get_verification_code_countdown">%1$d秒后重新获取</string>
+    <string name="enter_new_password_max_32">请输入最长32位的新密码</string>
+    <string name="confirm_new_password">请再次输入新密码</string>
+    <string name="change_password">修改密码</string>
+    <string name="back_to_home">返回首页</string>
+    
+    <!-- 收藏页面 -->
+    <string name="delete_confirm_message">确定要删除这个配置吗？</string>
+    <string name="delete_success">删除成功</string>
+    <string name="delete_failed">删除失败</string>
+    <string name="load_collection_failed">加载收藏列表失败</string>
+    
+    <!-- 网络和错误提示 -->
+    <string name="network_error">网络连接失败，请检查网络设置</string>
+    <string name="request_timeout">请求超时，请检查网络连接</string>
+    <string name="cannot_connect_server">无法连接服务器，请检查网络</string>
+    <string name="login_failed">登录失败，请稍后重试</string>
+    <string name="register_failed">注册失败，请稍后重试</string>
+    <string name="change_password_failed">修改密码失败，请稍后重试</string>
+    <string name="send_verification_code_failed">发送验证码失败，请稍后重试</string>
+    
+    <!-- 验证提示 -->
+    <string name="please_enter_email">请输入邮箱地址</string>
+    <string name="please_enter_correct_email">请输入正确的邮箱地址</string>
+    <string name="please_enter_correct_email_short">请输入正确的邮箱</string>
+    <string name="please_enter_6_digit_code">请输入6位验证码</string>
+    <string name="password_length_6_32">密码长度应为6-32位</string>
+    <string name="passwords_not_match">两次输入的密码不一致</string>
 </resources>
 
 

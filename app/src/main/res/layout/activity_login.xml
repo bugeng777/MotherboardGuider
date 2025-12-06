@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="欢迎来到"
+                android:text="@string/welcome"
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -51,18 +51,19 @@
                 android:layout_width="185dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="来自ChatGPT的人工智能机器喵"
+                android:text="@string/ai_machine_cat"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp" />
         </RelativeLayout>
 
         <EditText
+            android:gravity="start"
             android:id="@+id/login_email_edit"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="65dp"
             android:backgroundTint="#161C21"
-            android:hint="请输入您的邮箱"
+            android:hint="@string/enter_email"
             android:inputType="textEmailAddress"
             android:maxLength="48"
             android:minHeight="40dp"
@@ -71,6 +72,7 @@
             android:paddingBottom="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#666666"
+            android:letterSpacing="0"
             android:textSize="14sp" />
         <View
             android:layout_width="match_parent"
@@ -82,11 +84,12 @@
             android:layout_marginTop="30dp">
 
             <EditText
+                android:gravity="start"
                 android:id="@+id/login_pwd_edit"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:backgroundTint="#161C21"
-                android:hint="请输入您的密码"
+                android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:maxLength="32"
                 android:minHeight="40dp"
@@ -95,6 +98,7 @@
                 android:paddingBottom="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#666666"
+                android:letterSpacing="0"
                 android:textSize="14sp" />
 
             <TextView
@@ -104,7 +108,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/login_register_now_text_underline"
-                android:text="找回密码"
+                android:text="@string/forgot_password"
                 android:textColor="#BDBCFF" />
         </RelativeLayout>
 
@@ -126,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="登录"
+                android:text="@string/login"
                 android:textColor="#fff" />
         </RelativeLayout>
 
@@ -139,7 +143,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="没有账号? "
+                android:text="@string/no_account"
                 android:textColor="#EBEBFF" />
 
             <TextView
@@ -147,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_register_now_text_underline"
-                android:text="立即注册"
+                android:text="@string/register_now"
                 android:textColor="#BDBCFF" />
         </LinearLayout>
 

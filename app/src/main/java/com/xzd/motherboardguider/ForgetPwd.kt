@@ -15,9 +15,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
+import android.content.Context
 import com.xzd.motherboardguider.api.ApiClient
 import com.xzd.motherboardguider.bean.ForgetPwdRequest
 import com.xzd.motherboardguider.bean.SendVerificationCodeRequest
+import com.xzd.motherboardguider.utils.PrefsManager
+import com.xzd.motherboardguider.utils.LocaleHelper
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -33,6 +36,12 @@ class ForgetPwd : ComponentActivity() {
     private lateinit var backToHome: TextView
     private lateinit var getVerificationCodeButton: TextView
     private var countDownTimer: CountDownTimer? = null
+
+    override fun attachBaseContext(newBase: Context) {
+        val savedLanguage = PrefsManager.getLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, savedLanguage)
+        super.attachBaseContext(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,11 +67,11 @@ class ForgetPwd : ComponentActivity() {
             val email = emailEdit.text.toString().trim()
             // 先判断邮箱地址是否正确
             if (email.isEmpty()) {
-                Toast.makeText(this, "请输入邮箱地址", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.please_enter_email), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, "请输入正确的邮箱地址", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.please_enter_correct_email), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             // 发送验证码
@@ -220,19 +229,19 @@ class ForgetPwd : ComponentActivity() {
             val isPwdMatch = newPwd == confirmPwd
 
             if (!isEmailValid) {
-                Toast.makeText(this, "请输入正确的邮箱", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.please_enter_correct_email_short), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (!isVerfiWordValid) {
-                Toast.makeText(this, "请输入6位验证码", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.please_enter_6_digit_code), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (!isNewPwdValid) {
-                Toast.makeText(this, "密码长度应为6-32位", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.password_length_6_32), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if (!isPwdMatch) {
-                Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.passwords_not_match), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -268,19 +277,19 @@ class ForgetPwd : ComponentActivity() {
             } catch (e: IOException) {
                 // 网络连接异常
                 Log.e("API", "网络连接异常: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "网络连接失败，请检查网络设置", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
             } catch (e: SocketTimeoutException) {
                 // 请求超时
                 Log.e("API", "请求超时: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "请求超时，请检查网络连接", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.request_timeout), Toast.LENGTH_SHORT).show()
             } catch (e: UnknownHostException) {
                 // 无法解析主机
                 Log.e("API", "无法连接服务器: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "无法连接服务器，请检查网络", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.cannot_connect_server), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 // 其他异常
                 Log.e("API", "修改密码请求异常: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "修改密码失败，请稍后重试", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.change_password_failed), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -307,16 +316,16 @@ class ForgetPwd : ComponentActivity() {
                 }
             } catch (e: IOException) {
                 Log.e("API", "网络连接异常: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "网络连接失败，请检查网络设置", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
             } catch (e: SocketTimeoutException) {
                 Log.e("API", "请求超时: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "请求超时，请检查网络连接", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.request_timeout), Toast.LENGTH_SHORT).show()
             } catch (e: UnknownHostException) {
                 Log.e("API", "无法连接服务器: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "无法连接服务器，请检查网络", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.cannot_connect_server), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 Log.e("API", "发送验证码请求异常: ${e.message}", e)
-                Toast.makeText(this@ForgetPwd, "发送验证码失败，请稍后重试", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPwd, getString(R.string.send_verification_code_failed), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -334,12 +343,12 @@ class ForgetPwd : ComponentActivity() {
         countDownTimer = object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
-                getVerificationCodeButton.text = "${seconds}秒后重新获取"
+                getVerificationCodeButton.text = getString(R.string.get_verification_code_countdown, seconds.toInt())
             }
 
             override fun onFinish() {
                 // 倒计时结束，恢复按钮
-                getVerificationCodeButton.text = "获取验证码"
+                getVerificationCodeButton.text = getString(R.string.get_verification_code)
                 getVerificationCodeButton.isEnabled = true
                 getVerificationCodeButton.isClickable = true
                 getVerificationCodeButton.alpha = 1f

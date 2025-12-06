@@ -19,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import com.xzd.motherboardguider.api.ApiClient
 import com.xzd.motherboardguider.bean.LoginRequest
 import com.xzd.motherboardguider.utils.PrefsManager
+import com.xzd.motherboardguider.utils.LocaleHelper
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -31,6 +32,12 @@ class Login : ComponentActivity() {
     private lateinit var loginButton: RelativeLayout
     private lateinit var loginToRegister: TextView
     private lateinit var goToChangePwd: TextView
+
+    override fun attachBaseContext(newBase: Context) {
+        val savedLanguage = PrefsManager.getLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, savedLanguage)
+        super.attachBaseContext(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -205,19 +212,19 @@ class Login : ComponentActivity() {
             } catch (e: IOException) {
                 // 网络连接异常
                 Log.e("API", "网络连接异常: ${e.message}", e)
-                Toast.makeText(this@Login, "网络连接失败，请检查网络设置", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Login, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
             } catch (e: SocketTimeoutException) {
                 // 请求超时
                 Log.e("API", "请求超时: ${e.message}", e)
-                Toast.makeText(this@Login, "请求超时，请检查网络连接", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Login, getString(R.string.request_timeout), Toast.LENGTH_SHORT).show()
             } catch (e: UnknownHostException) {
                 // 无法解析主机
                 Log.e("API", "无法连接服务器: ${e.message}", e)
-                Toast.makeText(this@Login, "无法连接服务器，请检查网络", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Login, getString(R.string.cannot_connect_server), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 // 其他异常
                 Log.e("API", "登录请求异常: ${e.message}", e)
-                Toast.makeText(this@Login, "登录失败，请稍后重试", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Login, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
             }
         }
     }
