@@ -233,7 +233,7 @@ class MainActivity : ComponentActivity() {
                     Log.i("CPU选择", "${province}  ${city} ${county}")
                     setTextStatus(
                         cpuSelectorText!!,
-                        "${province.name} ｜ ${city.name} ｜ ${county.name}",
+                        " ${county.name}",
                         0
                     )
                     val cb = CPUBean()
