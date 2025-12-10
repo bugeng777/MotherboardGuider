@@ -83,6 +83,8 @@
     <string name="share_success">Image saved to gallery</string>
     <string name="share_failed">Failed to save image</string>
     <string name="share_to_wechat">Share to WeChat</string>
+    <string name="share_to">Share to</string>
+    <string name="share_to_other">Send to other apps</string>
     
     <!-- Network and Error Messages -->
     <string name="network_error">Network connection failed, please check network settings</string>

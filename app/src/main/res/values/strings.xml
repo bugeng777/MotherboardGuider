@@ -83,6 +83,8 @@
     <string name="share_success">图片已保存到相册</string>
     <string name="share_failed">保存图片失败</string>
     <string name="share_to_wechat">分享到微信</string>
+    <string name="share_to">分享到</string>
+    <string name="share_to_other">发送到其他应用</string>
     
     <!-- 网络和错误提示 -->
     <string name="network_error">网络连接失败，请检查网络设置</string>

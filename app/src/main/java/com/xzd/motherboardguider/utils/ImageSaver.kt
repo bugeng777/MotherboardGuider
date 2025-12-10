@@ -92,28 +92,64 @@ object ImageSaver {
     
     /**
      * 保存图片到临时文件并返回用于分享的 Uri
-     * 这个方法会将图片保存到应用缓存目录，并返回一个可以通过 FileProvider 分享的 Uri
+     * 优先保存到外部存储的公共 Pictures 目录，微信等应用可以直接访问
      */
     fun saveImageForShare(context: Context, bitmap: Bitmap, fileName: String = "配置分享"): Uri? {
         return try {
-            // 保存到应用缓存目录
-            val cacheDir = context.cacheDir
-            val imageFile = File(cacheDir, "${fileName}_${getCurrentTimeString()}.jpg")
+            // 优先尝试保存到外部存储公共目录（所有 Android 版本都支持）
+            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val appDir = File(imagesDir, "MotherboardGuider")
+            
+            if (!appDir.exists()) {
+                appDir.mkdirs()
+            }
+            
+            val imageFile = File(appDir, "${fileName}_${getCurrentTimeString()}.jpg")
             
             val fos = FileOutputStream(imageFile)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
             fos.flush()
             fos.close()
             
-            // 使用 FileProvider 获取 Uri
-            FileProvider.getUriForFile(
-                context,
-                "${context.packageName}.fileprovider",
-                imageFile
-            )
+            // 通知媒体库更新
+            val values = ContentValues()
+            values.put(MediaStore.Images.Media.DATA, imageFile.absolutePath)
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+            
+            // 对于 Android 7.0+，需要使用 FileProvider 转换 file:// URI
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                // Android 7.0+ 使用 FileProvider
+                FileProvider.getUriForFile(
+                    context,
+                    "${context.packageName}.fileprovider",
+                    imageFile
+                )
+            } else {
+                // Android 7.0 以下直接使用 file:// URI
+                Uri.fromFile(imageFile)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            null
+            // 如果外部存储失败，回退到使用缓存目录 + FileProvider
+            return try {
+                val cacheDir = context.cacheDir
+                val imageFile = File(cacheDir, "${fileName}_${getCurrentTimeString()}.jpg")
+                
+                val fos = FileOutputStream(imageFile)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                fos.flush()
+                fos.close()
+                
+                FileProvider.getUriForFile(
+                    context,
+                    "${context.packageName}.fileprovider",
+                    imageFile
+                )
+            } catch (e2: Exception) {
+                e2.printStackTrace()
+                null
+            }
         }
     }
     

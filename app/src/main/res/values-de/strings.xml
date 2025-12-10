@@ -80,6 +80,11 @@
     <string name="delete_success">Erfolgreich gelöscht</string>
     <string name="delete_failed">Löschen fehlgeschlagen</string>
     <string name="load_collection_failed">Sammlungsliste konnte nicht geladen werden</string>
+    <string name="share_success">Bild wurde in der Galerie gespeichert</string>
+    <string name="share_failed">Bild konnte nicht gespeichert werden</string>
+    <string name="share_to_wechat">An WeChat senden</string>
+    <string name="share_to">Teilen mit</string>
+    <string name="share_to_other">An andere Apps senden</string>
     
     <!-- Netzwerk- und Fehlermeldungen -->
     <string name="network_error">Netzwerkverbindung fehlgeschlagen, bitte Netzwerkeinstellungen überprüfen</string>

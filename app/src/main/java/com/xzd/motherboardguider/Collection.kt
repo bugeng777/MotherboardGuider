@@ -212,22 +212,8 @@ class Collection : ComponentActivity(){
                 val shareUri = ImageSaver.saveImageForShare(this@Collection, bitmap, item.collect_name)
                 
                 if (shareUri != null) {
-                    // 检查微信是否安装
-                    if (isWeChatInstalled()) {
-                        // 直接分享到微信好友
-                        shareToWeChat(shareUri)
-                    } else {
-                        // 如果微信未安装，使用通用分享选择器
-                        val shareIntent = Intent().apply {
-                            action = Intent.ACTION_SEND
-                            type = "image/jpeg"
-                            putExtra(Intent.EXTRA_STREAM, shareUri)
-                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                        }
-                        val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
-                        chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                        startActivity(chooserIntent)
-                    }
+                    // 显示分享选择弹窗
+                    showShareDialog(shareUri)
                 } else {
                     Toast.makeText(this@Collection, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
                 }
@@ -235,6 +221,90 @@ class Collection : ComponentActivity(){
                 Log.e("Share", "分享失败: ${e.message}", e)
                 Toast.makeText(this@Collection, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+    
+    /**
+     * 显示分享选择弹窗
+     */
+    private fun showShareDialog(shareUri: android.net.Uri) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_share)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        
+        // 设置对话框宽度和位置（底部弹窗效果）
+        val window = dialog.window
+        window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(),
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        val layoutParams = window?.attributes
+        layoutParams?.gravity = android.view.Gravity.BOTTOM
+        layoutParams?.verticalMargin = 0.05f // 距离底部5%
+        window?.attributes = layoutParams
+        
+        val wechatLayout = dialog.findViewById<View>(R.id.wechatLayout)
+        val shareToOtherLayout = dialog.findViewById<View>(R.id.shareToOtherLayout)
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        
+        // 微信选项点击
+        wechatLayout.setOnClickListener {
+            dialog.dismiss()
+            shareToWeChat(shareUri)
+        }
+        
+        // 发送到其他应用选项点击
+        shareToOtherLayout.setOnClickListener {
+            dialog.dismiss()
+            shareToOtherApps(shareUri)
+        }
+        
+        // 取消按钮
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        dialog.show()
+    }
+    
+    /**
+     * 分享到其他应用（通用分享选择器）
+     */
+    private fun shareToOtherApps(imageUri: android.net.Uri) {
+        try {
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "image/jpeg"
+                putExtra(Intent.EXTRA_STREAM, imageUri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                // 使用 ClipData 确保权限正确传递
+                clipData = android.content.ClipData.newUri(contentResolver, "Image", imageUri)
+            }
+            
+            // 为所有可能接收 Intent 的应用授予权限（在创建 Chooser 之前）
+            val resInfoList = packageManager.queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY)
+            for (resolveInfo in resInfoList) {
+                val packageName = resolveInfo.activityInfo.packageName
+                try {
+                    grantUriPermission(
+                        packageName,
+                        imageUri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                } catch (e: Exception) {
+                    Log.w("Share", "无法授予权限给 $packageName: ${e.message}")
+                }
+            }
+            
+            val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_other))
+            chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            chooserIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+            
+            startActivity(chooserIntent)
+        } catch (e: Exception) {
+            Log.e("Share", "分享到其他应用失败: ${e.message}", e)
+            Toast.makeText(this, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
         }
     }
     
@@ -255,43 +325,7 @@ class Collection : ComponentActivity(){
      */
     private fun shareToWeChat(imageUri: android.net.Uri) {
         try {
-            // 创建分享 Intent
-            val shareIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                type = "image/jpeg"
-                putExtra(Intent.EXTRA_STREAM, imageUri)
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            
-            // 尝试直接启动微信
-            val weChatIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                type = "image/jpeg"
-                putExtra(Intent.EXTRA_STREAM, imageUri)
-                setPackage("com.tencent.mm")
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            
-            // 授予微信读取文件的权限
-            grantUriPermission(
-                "com.tencent.mm",
-                imageUri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-            )
-            
-            // 检查是否可以启动微信
-            if (weChatIntent.resolveActivity(packageManager) != null) {
-                startActivity(weChatIntent)
-            } else {
-                // 如果无法直接启动微信，使用通用分享选择器，但优先显示微信
-                val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
-                chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                startActivity(chooserIntent)
-            }
-        } catch (e: Exception) {
-            Log.e("Share", "分享到微信失败: ${e.message}", e)
-            // 如果直接调用微信失败，回退到通用分享
+            // 使用通用分享选择器（之前生效的方式）
             val shareIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 type = "image/jpeg"
@@ -301,6 +335,9 @@ class Collection : ComponentActivity(){
             val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
             chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             startActivity(chooserIntent)
+        } catch (e: Exception) {
+            Log.e("Share", "分享到微信失败: ${e.message}", e)
+            Toast.makeText(this, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
         }
     }
 }
