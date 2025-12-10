@@ -325,16 +325,30 @@ class Collection : ComponentActivity(){
      */
     private fun shareToWeChat(imageUri: android.net.Uri) {
         try {
-            // 使用通用分享选择器（之前生效的方式）
-            val shareIntent = Intent().apply {
+            // 检查微信是否安装
+            if (!isWeChatInstalled()) {
+                Toast.makeText(this, getString(R.string.share_to_wechat) + " " + getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
+                return
+            }
+            
+            // 直接启动微信分享
+            val weChatIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 type = "image/jpeg"
                 putExtra(Intent.EXTRA_STREAM, imageUri)
+                setPackage("com.tencent.mm")
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
-            chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            startActivity(chooserIntent)
+            
+            // 授予微信读取文件的权限
+            grantUriPermission(
+                "com.tencent.mm",
+                imageUri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+            
+            startActivity(weChatIntent)
         } catch (e: Exception) {
             Log.e("Share", "分享到微信失败: ${e.message}", e)
             Toast.makeText(this, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
