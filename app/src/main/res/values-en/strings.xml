@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MotherboardGuider</string>
+    <string name="app_name">MoboLab</string>
     
     <!-- Main Screen -->
     <string name="my_config">My Config</string>
@@ -8,6 +8,7 @@
     <string name="app_title">Motherboard Guider</string>
     <string name="language_cn">CN</string>
     <string name="language_en">EN</string>
+    <string name="language_de">DE</string>
     <string name="select_config_info">Please select your configuration</string>
     <string name="cpu">CPU</string>
     <string name="gpu">GPU</string>
@@ -26,6 +27,7 @@
     <string name="select_language">Select Language</string>
     <string name="chinese">简体中文</string>
     <string name="english">English</string>
+    <string name="german">Deutsch</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="config_name">Config Name</string>
@@ -78,6 +80,9 @@
     <string name="delete_success">Deleted successfully</string>
     <string name="delete_failed">Delete failed</string>
     <string name="load_collection_failed">Failed to load collection list</string>
+    <string name="share_success">Image saved to gallery</string>
+    <string name="share_failed">Failed to save image</string>
+    <string name="share_to_wechat">Share to WeChat</string>
     
     <!-- Network and Error Messages -->
     <string name="network_error">Network connection failed, please check network settings</string>
@@ -95,6 +100,9 @@
     <string name="please_enter_6_digit_code">Please enter 6-digit verification code</string>
     <string name="password_length_6_32">Password length should be 6-32 characters</string>
     <string name="passwords_not_match">Passwords do not match</string>
+    
+    <!-- Loading Messages -->
+    <string name="loading">Loading...</string>
 </resources>
 
 

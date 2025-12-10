@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#161C21">
@@ -15,15 +16,16 @@
         <ImageView
             android:layout_width="82dp"
             android:layout_height="82dp"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@mipmap/mobolab_lgo" />
 
         <LinearLayout
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <com.xzd.motherboardguider.views.NoPaddingTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome"
@@ -32,9 +34,11 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:layout_marginLeft="4dp"
+                android:layout_gravity="bottom"
                 android:layout_width="88dp"
                 android:layout_height="18dp"
-                android:src="@mipmap/tishi" />
+                android:src="@mipmap/mobolab"/>
         </LinearLayout>
 
         <RelativeLayout

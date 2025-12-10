@@ -3,7 +3,9 @@ package com.xzd.motherboardguider
 import SpacingItemDecoration
 import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.core.content.FileProvider
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
@@ -23,7 +25,11 @@ import com.xzd.motherboardguider.bean.DeleteCollectionRequest
 import com.xzd.motherboardguider.bean.LoadCollectionListRequest
 import com.xzd.motherboardguider.utils.PrefsManager
 import com.xzd.motherboardguider.utils.LocaleHelper
+import com.xzd.motherboardguider.utils.ImageGenerator
+import com.xzd.motherboardguider.utils.ImageSaver
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class Collection : ComponentActivity(){
     private lateinit var hardwareListView:RecyclerView
@@ -45,9 +51,15 @@ class Collection : ComponentActivity(){
         val spacing = (20 * resources.displayMetrics.density).toInt()
         hardwareListView.addItemDecoration(SpacingItemDecoration(spacing))
         // 初始化 RecyclerView
-        collectionAdapter = CollectionAdapter(emptyList()) { item ->
-            showDeleteConfirmDialog(item)
-        }
+        collectionAdapter = CollectionAdapter(
+            emptyList(),
+            onDeleteClick = { item ->
+                showDeleteConfirmDialog(item)
+            },
+            onShareClick = { item ->
+                shareCollectionItem(item)
+            }
+        )
         hardwareListView.layoutManager = LinearLayoutManager(this)
         hardwareListView.adapter = collectionAdapter
         
@@ -181,6 +193,114 @@ class Collection : ComponentActivity(){
                 Log.e("API", "请求异常: ${e.message}", e)
                 Toast.makeText(baseContext, "请求异常: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+    
+    private fun shareCollectionItem(item: CollectionItem) {
+        lifecycleScope.launch {
+            try {
+                // 在后台线程生成图片
+                val bitmap = withContext(Dispatchers.IO) {
+                    val screenWidth = resources.displayMetrics.widthPixels
+                    ImageGenerator.generateImage(item, width = screenWidth)
+                }
+                
+                // 保存图片到相册
+                ImageSaver.saveImageToGallery(this@Collection, bitmap, item.collect_name)
+                
+                // 保存图片到临时文件用于分享
+                val shareUri = ImageSaver.saveImageForShare(this@Collection, bitmap, item.collect_name)
+                
+                if (shareUri != null) {
+                    // 检查微信是否安装
+                    if (isWeChatInstalled()) {
+                        // 直接分享到微信好友
+                        shareToWeChat(shareUri)
+                    } else {
+                        // 如果微信未安装，使用通用分享选择器
+                        val shareIntent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            type = "image/jpeg"
+                            putExtra(Intent.EXTRA_STREAM, shareUri)
+                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        }
+                        val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
+                        chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        startActivity(chooserIntent)
+                    }
+                } else {
+                    Toast.makeText(this@Collection, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Log.e("Share", "分享失败: ${e.message}", e)
+                Toast.makeText(this@Collection, getString(R.string.share_failed), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
+    /**
+     * 检查微信是否已安装
+     */
+    private fun isWeChatInstalled(): Boolean {
+        return try {
+            packageManager.getPackageInfo("com.tencent.mm", 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
+    }
+    
+    /**
+     * 分享图片到微信好友
+     */
+    private fun shareToWeChat(imageUri: android.net.Uri) {
+        try {
+            // 创建分享 Intent
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "image/jpeg"
+                putExtra(Intent.EXTRA_STREAM, imageUri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            
+            // 尝试直接启动微信
+            val weChatIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "image/jpeg"
+                putExtra(Intent.EXTRA_STREAM, imageUri)
+                setPackage("com.tencent.mm")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            
+            // 授予微信读取文件的权限
+            grantUriPermission(
+                "com.tencent.mm",
+                imageUri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+            
+            // 检查是否可以启动微信
+            if (weChatIntent.resolveActivity(packageManager) != null) {
+                startActivity(weChatIntent)
+            } else {
+                // 如果无法直接启动微信，使用通用分享选择器，但优先显示微信
+                val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
+                chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                startActivity(chooserIntent)
+            }
+        } catch (e: Exception) {
+            Log.e("Share", "分享到微信失败: ${e.message}", e)
+            // 如果直接调用微信失败，回退到通用分享
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "image/jpeg"
+                putExtra(Intent.EXTRA_STREAM, imageUri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            val chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_to_wechat))
+            chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            startActivity(chooserIntent)
         }
     }
 }

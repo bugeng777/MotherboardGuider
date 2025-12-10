@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MoboLab</string>
+    
+    <!-- Hauptbildschirm -->
+    <string name="my_config">Meine Konfiguration</string>
+    <string name="save_config">Konfiguration speichern</string>
+    <string name="app_title">Motherboard Guider</string>
+    <string name="language_cn">CN</string>
+    <string name="language_en">EN</string>
+    <string name="language_de">DE</string>
+    <string name="select_config_info">Bitte wählen Sie Ihre Konfiguration</string>
+    <string name="cpu">CPU</string>
+    <string name="gpu">Grafikkarte</string>
+    <string name="disk_count">Festplattenanzahl</string>
+    <string name="please_select">Bitte auswählen</string>
+    <string name="start_calculation">Berechnung starten</string>
+    <string name="recalculate">Neu berechnen</string>
+    <string name="expected_power">Erwartete Leistung</string>
+    <string name="motherboard_series">Mainboard-Serie</string>
+    <string name="recommended">Empfohlen</string>
+    <string name="supported">Unterstützt</string>
+    <string name="pending_calculation">Ausstehend</string>
+    <string name="watt">W</string>
+    
+    <!-- Dialog -->
+    <string name="select_language">Sprache auswählen</string>
+    <string name="chinese">简体中文</string>
+    <string name="english">English</string>
+    <string name="german">Deutsch</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="confirm">Bestätigen</string>
+    <string name="config_name">Konfigurationsname</string>
+    <string name="config_name_hint">Nur Chinesisch/Englisch/Zahlen</string>
+    <string name="please_enter_config_name">Bitte geben Sie den Konfigurationsnamen ein</string>
+    
+    <!-- Nachrichten -->
+    <string name="config_saved">Konfiguration gespeichert</string>
+    <string name="config_save_failed">Konfiguration konnte nicht gespeichert werden</string>
+    <string name="please_login_first">Bitte melden Sie sich zuerst an</string>
+    <string name="cannot_read_config">Ausgewählte Konfiguration kann nicht gelesen werden, bitte versuchen Sie es erneut</string>
+    <string name="option_error">Optionsfehler, bitte App neu starten</string>
+    
+    <!-- Auswahl-Titel -->
+    <string name="cpu_picker_title">CPU</string>
+    <string name="gpu_picker_title">GPU</string>
+    <string name="disk_picker_title">Festplattenanzahl</string>
+    
+    <!-- Anmeldebildschirm -->
+    <string name="welcome">Willkommen bei</string>
+    <string name="ai_machine_cat">KI-Maschinenkatze von ChatGPT</string>
+    <string name="enter_email">Bitte geben Sie Ihre E-Mail-Adresse ein</string>
+    <string name="enter_password">Bitte geben Sie Ihr Passwort ein</string>
+    <string name="forgot_password">Passwort vergessen</string>
+    <string name="login">Anmelden</string>
+    <string name="no_account">Kein Konto? </string>
+    <string name="register_now">Jetzt registrieren</string>
+    
+    <!-- Registrierungsbildschirm -->
+    <string name="login_register">Anmelden/Registrieren</string>
+    <string name="enter_nickname">Bitte geben Sie einen Spitznamen ein (max. 16 Zeichen)</string>
+    <string name="enter_email_for_recovery">Bitte geben Sie eine E-Mail-Adresse zur Passwort-Wiederherstellung ein</string>
+    <string name="enter_password_max_32">Bitte geben Sie ein Passwort ein (max. 32 Zeichen)</string>
+    <string name="register">Registrieren</string>
+    <string name="have_account">Bereits ein Konto? </string>
+    <string name="back_to_login">Zurück zur Anmeldung</string>
+    
+    <!-- Passwort vergessen Bildschirm -->
+    <string name="reset_password">Passwort zurücksetzen</string>
+    <string name="enter_verification_code">Bitte geben Sie den Bestätigungscode aus der E-Mail ein</string>
+    <string name="get_verification_code">Code abrufen</string>
+    <string name="get_verification_code_countdown">Erneut senden in %1$d Sekunden</string>
+    <string name="enter_new_password_max_32">Bitte geben Sie ein neues Passwort ein (max. 32 Zeichen)</string>
+    <string name="confirm_new_password">Bitte bestätigen Sie das neue Passwort</string>
+    <string name="change_password">Passwort ändern</string>
+    <string name="back_to_home">Zurück zur Startseite</string>
+    
+    <!-- Sammlungsbildschirm -->
+    <string name="delete_confirm_message">Möchten Sie diese Konfiguration wirklich löschen?</string>
+    <string name="delete_success">Erfolgreich gelöscht</string>
+    <string name="delete_failed">Löschen fehlgeschlagen</string>
+    <string name="load_collection_failed">Sammlungsliste konnte nicht geladen werden</string>
+    
+    <!-- Netzwerk- und Fehlermeldungen -->
+    <string name="network_error">Netzwerkverbindung fehlgeschlagen, bitte Netzwerkeinstellungen überprüfen</string>
+    <string name="request_timeout">Anfrage-Zeitüberschreitung, bitte Netzwerkverbindung überprüfen</string>
+    <string name="cannot_connect_server">Verbindung zum Server nicht möglich, bitte Netzwerk überprüfen</string>
+    <string name="login_failed">Anmeldung fehlgeschlagen, bitte versuchen Sie es später erneut</string>
+    <string name="register_failed">Registrierung fehlgeschlagen, bitte versuchen Sie es später erneut</string>
+    <string name="change_password_failed">Passwortänderung fehlgeschlagen, bitte versuchen Sie es später erneut</string>
+    <string name="send_verification_code_failed">Bestätigungscode konnte nicht gesendet werden, bitte versuchen Sie es später erneut</string>
+    
+    <!-- Validierungsmeldungen -->
+    <string name="please_enter_email">Bitte geben Sie eine E-Mail-Adresse ein</string>
+    <string name="please_enter_correct_email">Bitte geben Sie eine gültige E-Mail-Adresse ein</string>
+    <string name="please_enter_correct_email_short">Bitte geben Sie eine gültige E-Mail ein</string>
+    <string name="please_enter_6_digit_code">Bitte geben Sie einen 6-stelligen Bestätigungscode ein</string>
+    <string name="password_length_6_32">Passwortlänge sollte 6-32 Zeichen betragen</string>
+    <string name="passwords_not_match">Passwörter stimmen nicht überein</string>
+    
+    <!-- Lademeldungen -->
+    <string name="loading">Lädt...</string>
+</resources>
+

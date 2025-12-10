@@ -1,5 +1,6 @@
 package com.xzd.motherboardguider
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,6 +11,7 @@ import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.Window
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -176,12 +178,19 @@ class Login : ComponentActivity() {
                 return@setOnClickListener
             }
 
+            // 禁用登录按钮，防止重复点击
+            loginButton.isEnabled = false
+            loginButton.isClickable = false
+
             // 调用登录接口
             performLogin(email, password)
         }
     }
 
     private fun performLogin(email: String, password: String) {
+        // 显示加载对话框
+        val loadingDialog = showLoadingDialog()
+        
         lifecycleScope.launch {
             try {
                 val request = LoginRequest(
@@ -199,6 +208,8 @@ class Login : ComponentActivity() {
                         PrefsManager.saveToken(this@Login, token)
                         Log.i("API", "Token 已保存到 SharedPreferences")
                     }
+                    // 关闭加载对话框
+                    loadingDialog.dismiss()
                     // 登录成功
                     Toast.makeText(this@Login, response.data, Toast.LENGTH_SHORT).show()
                     // 跳转到 MainActivity
@@ -206,26 +217,70 @@ class Login : ComponentActivity() {
                     startActivity(intent)
                     finish() // 关闭登录页面
                 } else {
+                    // 关闭加载对话框
+                    loadingDialog.dismiss()
+                    // 恢复登录按钮状态
+                    loginButton.isEnabled = true
+                    loginButton.isClickable = true
                     // 账号或密码错误（API正常返回但code=1）
                     Toast.makeText(this@Login, response.data, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: IOException) {
+                // 关闭加载对话框
+                loadingDialog.dismiss()
+                // 恢复登录按钮状态
+                loginButton.isEnabled = true
+                loginButton.isClickable = true
                 // 网络连接异常
                 Log.e("API", "网络连接异常: ${e.message}", e)
                 Toast.makeText(this@Login, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
             } catch (e: SocketTimeoutException) {
+                // 关闭加载对话框
+                loadingDialog.dismiss()
+                // 恢复登录按钮状态
+                loginButton.isEnabled = true
+                loginButton.isClickable = true
                 // 请求超时
                 Log.e("API", "请求超时: ${e.message}", e)
                 Toast.makeText(this@Login, getString(R.string.request_timeout), Toast.LENGTH_SHORT).show()
             } catch (e: UnknownHostException) {
+                // 关闭加载对话框
+                loadingDialog.dismiss()
+                // 恢复登录按钮状态
+                loginButton.isEnabled = true
+                loginButton.isClickable = true
                 // 无法解析主机
                 Log.e("API", "无法连接服务器: ${e.message}", e)
                 Toast.makeText(this@Login, getString(R.string.cannot_connect_server), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
+                // 关闭加载对话框
+                loadingDialog.dismiss()
+                // 恢复登录按钮状态
+                loginButton.isEnabled = true
+                loginButton.isClickable = true
                 // 其他异常
                 Log.e("API", "登录请求异常: ${e.message}", e)
                 Toast.makeText(this@Login, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showLoadingDialog(): Dialog {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_loading)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false) // 不允许点击外部取消
+        dialog.setCanceledOnTouchOutside(false) // 不允许点击外部取消
+
+        // 设置对话框宽度
+        val window = dialog.window
+        window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.5).toInt(),
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        dialog.show()
+        return dialog
     }
 }

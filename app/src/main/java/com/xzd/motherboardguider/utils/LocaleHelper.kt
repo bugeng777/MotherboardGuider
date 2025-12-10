@@ -16,6 +16,7 @@ object LocaleHelper {
         val locale = when (languageCode) {
             "zh" -> Locale("zh", "CN")
             "en" -> Locale("en", "US")
+            "de" -> Locale("de", "DE")
             else -> Locale("zh", "CN") // 默认中文
         }
         

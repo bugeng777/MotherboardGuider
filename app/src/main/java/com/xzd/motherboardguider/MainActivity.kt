@@ -738,8 +738,10 @@ class MainActivity : ComponentActivity() {
 
         val languageZhLayout = dialog.findViewById<LinearLayout>(R.id.languageZhLayout)
         val languageEnLayout = dialog.findViewById<LinearLayout>(R.id.languageEnLayout)
+        val languageDeLayout = dialog.findViewById<LinearLayout>(R.id.languageDeLayout)
         val checkZh = dialog.findViewById<ImageView>(R.id.checkZh)
         val checkEn = dialog.findViewById<ImageView>(R.id.checkEn)
+        val checkDe = dialog.findViewById<ImageView>(R.id.checkDe)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
         val confirmButton = dialog.findViewById<Button>(R.id.confirmButton)
 
@@ -748,12 +750,13 @@ class MainActivity : ComponentActivity() {
         var selectedLanguage = currentLanguage
 
         // 设置当前选中状态
-        if (currentLanguage == "zh") {
-            checkZh.visibility = View.VISIBLE
-            checkEn.visibility = View.GONE
-        } else {
-            checkZh.visibility = View.GONE
-            checkEn.visibility = View.VISIBLE
+        checkZh.visibility = View.GONE
+        checkEn.visibility = View.GONE
+        checkDe.visibility = View.GONE
+        when (currentLanguage) {
+            "zh" -> checkZh.visibility = View.VISIBLE
+            "en" -> checkEn.visibility = View.VISIBLE
+            "de" -> checkDe.visibility = View.VISIBLE
         }
 
         // 中文选项点击
@@ -761,6 +764,7 @@ class MainActivity : ComponentActivity() {
             selectedLanguage = "zh"
             checkZh.visibility = View.VISIBLE
             checkEn.visibility = View.GONE
+            checkDe.visibility = View.GONE
         }
 
         // 英文选项点击
@@ -768,6 +772,15 @@ class MainActivity : ComponentActivity() {
             selectedLanguage = "en"
             checkZh.visibility = View.GONE
             checkEn.visibility = View.VISIBLE
+            checkDe.visibility = View.GONE
+        }
+
+        // 德语选项点击
+        languageDeLayout.setOnClickListener {
+            selectedLanguage = "de"
+            checkZh.visibility = View.GONE
+            checkEn.visibility = View.GONE
+            checkDe.visibility = View.VISIBLE
         }
 
         // 取消按钮
@@ -800,6 +813,7 @@ class MainActivity : ComponentActivity() {
         languageText.text = when (currentLanguage) {
             "zh" -> getString(R.string.language_cn)
             "en" -> getString(R.string.language_en)
+            "de" -> getString(R.string.language_de)
             else -> getString(R.string.language_cn)
         }
     }

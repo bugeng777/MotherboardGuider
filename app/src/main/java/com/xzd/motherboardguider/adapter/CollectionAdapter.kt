@@ -11,7 +11,8 @@ import com.xzd.motherboardguider.bean.CollectionItem
 
 class CollectionAdapter(
     private var collectionList: List<CollectionItem>,
-    private val onDeleteClick: (CollectionItem) -> Unit
+    private val onDeleteClick: (CollectionItem) -> Unit,
+    private val onShareClick: (CollectionItem) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -31,6 +32,7 @@ class CollectionAdapter(
         val expectSuggestMotherboard: TextView = itemView.findViewById(R.id.expectSuggestMotherboard)
         val expectSupportMotherboard: TextView = itemView.findViewById(R.id.expectSupportMotherboard)
         val deleteButton: RelativeLayout = itemView.findViewById(R.id.deleteButton)
+        val shareButton: RelativeLayout = itemView.findViewById(R.id.shareButton)
     }
 
     // 空提示和底部提示的 ViewHolder（它们布局相同，可以共用）
@@ -105,6 +107,11 @@ class CollectionAdapter(
                 // 设置删除按钮点击事件
                 holder.deleteButton.setOnClickListener {
                     onDeleteClick(item)
+                }
+                
+                // 设置分享按钮点击事件
+                holder.shareButton.setOnClickListener {
+                    onShareClick(item)
                 }
             }
             is HintViewHolder -> {

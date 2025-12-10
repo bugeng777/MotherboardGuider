@@ -89,55 +89,48 @@
           {
             "id": "5",
             "code": "5",
-            "name": "RTX 4080 12GB",
-            "releaseYear": 2022,
-            "powerConsumption": "285"
-          },
-          {
-            "id": "6",
-            "code": "6",
             "name": "RTX 4070 Ti",
             "releaseYear": 2023,
             "powerConsumption": "285"
           },
           {
-            "id": "7",
-            "code": "7",
+            "id": "6",
+            "code": "6",
             "name": "RTX 4070 Ti SUPER",
             "releaseYear": 2024,
             "powerConsumption": "285"
           },
           {
-            "id": "8",
-            "code": "8",
+            "id": "7",
+            "code": "7",
             "name": "RTX 4070 SUPER",
             "releaseYear": 2024,
             "powerConsumption": "220"
           },
           {
-            "id": "9",
-            "code": "9",
+            "id": "8",
+            "code": "8",
             "name": "RTX 4070",
             "releaseYear": 2023,
             "powerConsumption": "200"
           },
           {
+            "id": "9",
+            "code": "9",
+            "name": "RTX 4060 Ti 8GB",
+            "releaseYear": 2023,
+            "powerConsumption": "160"
+          },
+          {
             "id": "10",
             "code": "10",
-            "name": "RTX 4060 Ti 8GB",
+            "name": "RTX 4060 Ti 16GB",
             "releaseYear": 2023,
             "powerConsumption": "160"
           },
           {
             "id": "11",
             "code": "11",
-            "name": "RTX 4060 Ti 16GB",
-            "releaseYear": 2023,
-            "powerConsumption": "160"
-          },
-          {
-            "id": "12",
-            "code": "12",
             "name": "RTX 4060",
             "releaseYear": 2023,
             "powerConsumption": "115"
@@ -266,7 +259,7 @@
             "code": "7",
             "name": "RTX 2060 12GB",
             "releaseYear": 2021,
-            "powerConsumption": "185"
+            "powerConsumption": "184"
           },
           {
             "id": "8",
@@ -314,7 +307,7 @@
             "id": "5",
             "code": "5",
             "name": "GTX 1060",
-            "releaseYear": 2018,
+            "releaseYear": 2016,
             "powerConsumption": "120"
           },
           {
@@ -469,14 +462,14 @@
             "code": "4",
             "name": "RX 9060 XT",
             "releaseYear": 2025,
-            "powerConsumption": "180"
+            "powerConsumption": "160"
           },
           {
             "id": "5",
             "code": "5",
             "name": "RX 7650 GRE",
             "releaseYear": 2025,
-            "powerConsumption": "205"
+            "powerConsumption": "170"
           }
         ]
       },
@@ -609,14 +602,14 @@
             "code": "11",
             "name": "RX 6750 GRE 12GB",
             "releaseYear": 2023,
-            "powerConsumption": "185"
+            "powerConsumption": "230"
           },
           {
             "id": "12",
             "code": "12",
             "name": "RX 6750 GRE 10GB",
             "releaseYear": 2023,
-            "powerConsumption": "158"
+            "powerConsumption": "170"
           },
           {
             "id": "13",
@@ -823,19 +816,47 @@
     "code": "3",
     "name": "英特尔",
     "series": [
-      {
-        "id": "1",
-        "code": "1",
-        "name": "Arc系列",
-        "model": [
           {
             "id": "1",
             "code": "1",
-            "name": "Arc A380",
-            "releaseYear": 2022,
-            "powerConsumption": "75"
-          }
-        ]
+            "name": "Arc A系列 (Alchemist)",
+            "model": [
+              {
+                "id": "1",
+                "code": "1",
+                "name": "Arc A770 16GB",
+                "releaseYear": 2022,
+                "powerConsumption": "225"
+              },
+              {
+                "id": "2",
+                "code": "2",
+                "name": "Arc A750",
+                "releaseYear": 2022,
+                "powerConsumption": "225"
+              },
+              {
+                "id": "3",
+                "code": "3",
+                "name": "Arc A580",
+                "releaseYear": 2023,
+                "powerConsumption": "175"
+              },
+              {
+                "id": "4",
+                "code": "4",
+                "name": "Arc A380",
+                "releaseYear": 2022,
+                "powerConsumption": "75"
+              },
+              {
+                "id": "5",
+                "code": "5",
+                "name": "Arc A310",
+                "releaseYear": 2022,
+                "powerConsumption": "30"
+              }
+            ]
       }
     ]
   }

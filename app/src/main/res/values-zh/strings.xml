@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MotherboardGuider</string>
+    <string name="app_name">MoboLab</string>
     
     <!-- 主界面 -->
     <string name="my_config">我的配置</string>
@@ -8,6 +8,7 @@
     <string name="app_title">Motherboard Guider</string>
     <string name="language_cn">CN</string>
     <string name="language_en">EN</string>
+    <string name="language_de">DE</string>
     <string name="select_config_info">请选择你的配置信息</string>
     <string name="cpu">CPU</string>
     <string name="gpu">显卡</string>
@@ -26,6 +27,7 @@
     <string name="select_language">选择语言</string>
     <string name="chinese">简体中文</string>
     <string name="english">English</string>
+    <string name="german">Deutsch</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
     <string name="config_name">配置名称</string>
@@ -78,6 +80,9 @@
     <string name="delete_success">删除成功</string>
     <string name="delete_failed">删除失败</string>
     <string name="load_collection_failed">加载收藏列表失败</string>
+    <string name="share_success">图片已保存到相册</string>
+    <string name="share_failed">保存图片失败</string>
+    <string name="share_to_wechat">分享到微信</string>
     
     <!-- 网络和错误提示 -->
     <string name="network_error">网络连接失败，请检查网络设置</string>
@@ -95,6 +100,9 @@
     <string name="please_enter_6_digit_code">请输入6位验证码</string>
     <string name="password_length_6_32">密码长度应为6-32位</string>
     <string name="passwords_not_match">两次输入的密码不一致</string>
+    
+    <!-- 加载提示 -->
+    <string name="loading">加载中...</string>
 </resources>
 
 
